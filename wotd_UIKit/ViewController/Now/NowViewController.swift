@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NowViewController: UIViewController {
+final class NowViewController: UIViewController {
     
     private var containerView: UIView = {
         let view: UIView = UIView()
@@ -53,6 +53,9 @@ class NowViewController: UIViewController {
         
         return label
     }()
+    
+    private var yesterdayRect = SmallWeatherRect(dayText: "Yesterday", tempText: "30.0")
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +65,7 @@ class NowViewController: UIViewController {
     }
 
     
-    func addSubviews() {
+    private func addSubviews() {
         view.addSubview(containerView)
         
         containerView.addSubview(locationHStack)
@@ -70,31 +73,30 @@ class NowViewController: UIViewController {
         
         locationHStack.addArrangedSubview(locationImage)
         locationHStack.addArrangedSubview(loacationText)
+        
+        weatherRectVStack.addArrangedSubview(yesterdayRect)
     }
     
     
-    func layout() {
-        containerView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide).offset(16)
+    private func layout() {
+        containerView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide).offset(16)
         }
         
-        locationHStack.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+        locationHStack.snp.makeConstraints {
+            $0.top.leading.trailing.equalToSuperview()
         }
         
-        locationImage.snp.makeConstraints { make in
-            make.width.equalTo(30)
-            make.height.equalTo(30)
+        locationImage.snp.makeConstraints {
+            $0.width.height.equalTo(30)
         }
         
-        weatherRectVStack.snp.makeConstraints { make in
-            make.top.equalTo(locationHStack.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
+        weatherRectVStack.snp.makeConstraints {
+            $0.top.equalTo(locationHStack.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
+        
+        
     }
 }
 

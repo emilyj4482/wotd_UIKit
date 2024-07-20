@@ -18,6 +18,7 @@
 		A115DACD2C4BE63400764929 /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115DACC2C4BE63400764929 /* NowViewModel.swift */; };
 		A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */; };
 		A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */; };
+		A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A115DACC2C4BE63400764929 /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
 		A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,9 +91,9 @@
 		A110C7362C4AC51B004F57AF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A110C7372C4AC660004F57AF /* NowViewController.swift */,
-				A110C7392C4AC688004F57AF /* ThenViewController.swift */,
-				A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */,
+				A1ACA15D2C4C1EDA008BAA51 /* Now */,
+				A1ACA15E2C4C1EE1008BAA51 /* Then */,
+				A1ACA15F2C4C1EE7008BAA51 /* Settings */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -111,6 +113,31 @@
 				A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A1ACA15D2C4C1EDA008BAA51 /* Now */ = {
+			isa = PBXGroup;
+			children = (
+				A110C7372C4AC660004F57AF /* NowViewController.swift */,
+				A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */,
+			);
+			path = Now;
+			sourceTree = "<group>";
+		};
+		A1ACA15E2C4C1EE1008BAA51 /* Then */ = {
+			isa = PBXGroup;
+			children = (
+				A110C7392C4AC688004F57AF /* ThenViewController.swift */,
+			);
+			path = Then;
+			sourceTree = "<group>";
+		};
+		A1ACA15F2C4C1EE7008BAA51 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +222,7 @@
 				A115DACD2C4BE63400764929 /* NowViewModel.swift in Sources */,
 				A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */,
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
+				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
 				A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */,
 				A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */,
 			);
