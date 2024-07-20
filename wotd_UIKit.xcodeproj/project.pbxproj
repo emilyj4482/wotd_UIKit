@@ -16,6 +16,9 @@
 		A110C73C2C4AC6A1004F57AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */; };
 		A115DAC92C4BDEA100764929 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A115DAC82C4BDEA100764929 /* SnapKit */; };
 		A115DACD2C4BE63400764929 /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115DACC2C4BE63400764929 /* NowViewModel.swift */; };
+		A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B32C4C443900B818E7 /* NowWeather.swift */; };
+		A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B62C4C44E000B818E7 /* Icon.swift */; };
+		A168A3BA2C4C46EB00B818E7 /* TempString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B92C4C46EB00B818E7 /* TempString.swift */; };
 		A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */; };
 		A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */; };
 		A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */; };
@@ -32,6 +35,9 @@
 		A110C7392C4AC688004F57AF /* ThenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThenViewController.swift; sourceTree = "<group>"; };
 		A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A115DACC2C4BE63400764929 /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
+		A168A3B32C4C443900B818E7 /* NowWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowWeather.swift; sourceTree = "<group>"; };
+		A168A3B62C4C44E000B818E7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		A168A3B92C4C46EB00B818E7 /* TempString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempString.swift; sourceTree = "<group>"; };
 		A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRect.swift; sourceTree = "<group>"; };
@@ -70,9 +76,11 @@
 			children = (
 				A110C7212C4AC446004F57AF /* AppDelegate.swift */,
 				A110C7232C4AC446004F57AF /* SceneDelegate.swift */,
+				A168A3B52C4C444800B818E7 /* Model */,
 				A110C7352C4AC515004F57AF /* View */,
 				A110C7362C4AC51B004F57AF /* ViewController */,
 				A115DACE2C4BE63900764929 /* ViewModel */,
+				A168A3B82C4C44E500B818E7 /* Helper */,
 				A110C72C2C4AC447004F57AF /* LaunchScreen.storyboard */,
 				A110C72A2C4AC447004F57AF /* Assets.xcassets */,
 				A110C72F2C4AC447004F57AF /* Info.plist */,
@@ -104,6 +112,23 @@
 				A115DACC2C4BE63400764929 /* NowViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A168A3B52C4C444800B818E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A168A3B32C4C443900B818E7 /* NowWeather.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A168A3B82C4C44E500B818E7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A168A3B62C4C44E000B818E7 /* Icon.swift */,
+				A168A3B92C4C46EB00B818E7 /* TempString.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		A1ACA15A2C4C14B5008BAA51 /* TabBar */ = {
@@ -224,7 +249,10 @@
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
 				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
 				A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */,
+				A168A3BA2C4C46EB00B818E7 /* TempString.swift in Sources */,
 				A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */,
+				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
+				A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

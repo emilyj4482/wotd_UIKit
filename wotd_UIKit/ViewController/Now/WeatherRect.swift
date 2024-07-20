@@ -56,8 +56,8 @@ enum Day {
     
     var weatherIconSize: UInt {
         switch self {
-        case .today: 100
-        case .notToday : 80
+        case .today: 90
+        case .notToday : 70
         }
     }
 }
@@ -65,17 +65,15 @@ enum Day {
 final class WeatherRect: UIView {
     
     var day: Day
-    var dayText: String
-    var tempText: String
+    var weather: NowWeather
 
-    init(day: Day, dayText: String, tempText: String) {
+    init(day: Day, weather: NowWeather) {
         self.day = day
-        self.dayText = dayText
-        self.tempText = tempText
+        self.weather = weather
         super.init(frame: CGRect())
         addSubviews()
         layout()
-        setText(dayText: dayText, tempText: tempText)
+        setInfo(weather)
         setLabel(day)
     }
     
@@ -115,12 +113,12 @@ extension WeatherRect {
         descriptionLabel.font = .preferredFont(forTextStyle: day.descriptionLabelFontStyle)
     }
     
-    func setText(dayText: String, tempText: String) {
-        dayLabel.text = dayText
-        tempLabel.text = tempText
-        maxminLabel.text = "max 30 min 23"
-        descriptionLabel.text = "Overcast clouds"
-        weatherIcon.image = UIImage(systemName: "smoke.fill")
+    func setInfo(_ weather: NowWeather) {
+        dayLabel.text = weather.dayText
+        tempLabel.text = weather.temp.toString
+        maxminLabel.text = "max \(weather.maxTemp.toString) min \(weather.minTemp.toString)"
+        descriptionLabel.text = weather.description
+        weatherIcon.image = UIImage(systemName: weather.icon)
     }
     
     func layout() {

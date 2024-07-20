@@ -55,11 +55,11 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var yesterdayRect = WeatherRect(day: .notToday, dayText: "Yesterday", tempText: "30.0")
+    private var yesterdayRect = WeatherRect(day: .notToday, weather: NowViewModel.shared.exampleY)
     
-    private var nowRect = WeatherRect(day: .today, dayText: "Now", tempText: "27.0")
+    private var nowRect = WeatherRect(day: .today, weather: NowViewModel.shared.exampleN)
     
-    private var tomorrowRect = WeatherRect(day: .notToday, dayText: "Tomorrow", tempText: "23.6")
+    private var tomorrowRect = WeatherRect(day: .notToday, weather: NowViewModel.shared.exampleT)
 
 
     override func viewDidLoad() {
