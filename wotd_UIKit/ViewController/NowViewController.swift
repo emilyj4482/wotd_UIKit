@@ -39,6 +39,7 @@ class NowViewController: UIViewController {
         let imageView: UIImageView = UIImageView()
         
         imageView.image = UIImage(systemName: "location.fill")
+        imageView.tintColor = .accent
     
         return imageView
     }()
@@ -48,6 +49,7 @@ class NowViewController: UIViewController {
         
         label.text = NowViewModel.shared.location
         label.font = .systemFont(ofSize: 30, weight: .bold)
+        label.textColor = .accent
         
         return label
     }()
