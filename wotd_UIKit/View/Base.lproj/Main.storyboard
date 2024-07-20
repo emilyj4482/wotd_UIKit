@@ -27,9 +27,9 @@
         <!--Tab Bar Controller-->
         <scene sceneID="dNC-BH-nG7">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GJH-TJ-ATr" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="GJH-TJ-ATr" customClass="TabBarController" customModule="wotd_UIKit" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n8W-kD-Exi">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n8W-kD-Exi" customClass="TabBar" customModule="wotd_UIKit" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

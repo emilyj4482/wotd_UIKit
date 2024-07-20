@@ -8,7 +8,7 @@
 import UIKit
 
 class ThenViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
