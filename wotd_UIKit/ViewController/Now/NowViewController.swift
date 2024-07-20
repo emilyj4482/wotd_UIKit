@@ -26,15 +26,6 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var weatherRectVStack: UIStackView = {
-        let vStack: UIStackView = UIStackView()
-        
-        vStack.axis = .vertical
-        
-        return vStack
-        
-    }()
-    
     private var locationImage: UIImageView = {
         let imageView: UIImageView = UIImageView()
         
@@ -54,7 +45,21 @@ final class NowViewController: UIViewController {
         return label
     }()
     
-    private var yesterdayRect = SmallWeatherRect(dayText: "Yesterday", tempText: "30.0")
+    private var weatherRectVStack: UIStackView = {
+        let vStack: UIStackView = UIStackView()
+        
+        vStack.axis = .vertical
+        vStack.spacing = 13
+        
+        return vStack
+        
+    }()
+    
+    private var yesterdayRect = SmallWeatherRect(day: .notToday, dayText: "Yesterday", tempText: "30.0")
+    
+    private var nowRect = SmallWeatherRect(day: .today, dayText: "Now", tempText: "27.0")
+    
+    private var tomorrowRect = SmallWeatherRect(day: .notToday, dayText: "Tomorrow", tempText: "23.6")
 
 
     override func viewDidLoad() {
@@ -75,16 +80,20 @@ final class NowViewController: UIViewController {
         locationHStack.addArrangedSubview(loacationText)
         
         weatherRectVStack.addArrangedSubview(yesterdayRect)
+        weatherRectVStack.addArrangedSubview(nowRect)
+        weatherRectVStack.addArrangedSubview(tomorrowRect)
     }
     
     
     private func layout() {
         containerView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide).offset(16)
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
         
         locationHStack.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview().offset(12)
+            $0.leading.equalToSuperview().offset(16)
+            $0.trailing.equalToSuperview().inset(16)
         }
         
         locationImage.snp.makeConstraints {
@@ -92,8 +101,9 @@ final class NowViewController: UIViewController {
         }
         
         weatherRectVStack.snp.makeConstraints {
-            $0.top.equalTo(locationHStack.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(locationHStack.snp.bottom).offset(20)
+            $0.leading.equalTo(locationHStack.snp.leading)
+            $0.trailing.equalTo(locationHStack.snp.trailing)
         }
         
         
