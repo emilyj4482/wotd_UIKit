@@ -55,11 +55,11 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var yesterdayRect = SmallWeatherRect(day: .notToday, dayText: "Yesterday", tempText: "30.0")
+    private var yesterdayRect = WeatherRect(day: .notToday, dayText: "Yesterday", tempText: "30.0")
     
-    private var nowRect = SmallWeatherRect(day: .today, dayText: "Now", tempText: "27.0")
+    private var nowRect = WeatherRect(day: .today, dayText: "Now", tempText: "27.0")
     
-    private var tomorrowRect = SmallWeatherRect(day: .notToday, dayText: "Tomorrow", tempText: "23.6")
+    private var tomorrowRect = WeatherRect(day: .notToday, dayText: "Tomorrow", tempText: "23.6")
 
 
     override func viewDidLoad() {
@@ -69,7 +69,6 @@ final class NowViewController: UIViewController {
         layout()
     }
 
-    
     private func addSubviews() {
         view.addSubview(containerView)
         
@@ -83,7 +82,6 @@ final class NowViewController: UIViewController {
         weatherRectVStack.addArrangedSubview(nowRect)
         weatherRectVStack.addArrangedSubview(tomorrowRect)
     }
-    
     
     private func layout() {
         containerView.snp.makeConstraints {
@@ -105,8 +103,6 @@ final class NowViewController: UIViewController {
             $0.leading.equalTo(locationHStack.snp.leading)
             $0.trailing.equalTo(locationHStack.snp.trailing)
         }
-        
-        
     }
 }
 

@@ -62,7 +62,7 @@ enum Day {
     }
 }
 
-final class SmallWeatherRect: UIView {
+final class WeatherRect: UIView {
     
     var day: Day
     var dayText: String
@@ -83,38 +83,25 @@ final class SmallWeatherRect: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private var dayLabel: UILabel = {
-        let label: UILabel = UILabel()
-        return label
-    }()
+    private var dayLabel = UILabel()
     
-    private var tempLabel: UILabel = {
-        let label: UILabel = UILabel()
-        return label
-    }()
+    private var tempLabel = UILabel()
     
-    private var maxminLabel: UILabel = {
-        let label: UILabel = UILabel()
-        return label
-    }()
+    private var maxminLabel = UILabel()
     
     private var weatherIcon: UIImageView = {
         let imageView: UIImageView = UIImageView()
         
-        imageView.image = UIImage(systemName: "smoke.fill")
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .accent
         
         return imageView
     }()
     
-    private var descriptionLabel: UILabel = {
-        let label: UILabel = UILabel()
-        return label
-    }()
+    private var descriptionLabel = UILabel()
 }
 
-extension SmallWeatherRect {
+extension WeatherRect {
     
     func addSubviews() {
         [dayLabel, tempLabel, maxminLabel, weatherIcon, descriptionLabel].forEach { addSubview($0) }
@@ -128,18 +115,18 @@ extension SmallWeatherRect {
         descriptionLabel.font = .preferredFont(forTextStyle: day.descriptionLabelFontStyle)
     }
     
-    
     func setText(dayText: String, tempText: String) {
         dayLabel.text = dayText
         tempLabel.text = tempText
         maxminLabel.text = "max 30 min 23"
         descriptionLabel.text = "Overcast clouds"
+        weatherIcon.image = UIImage(systemName: "smoke.fill")
     }
     
     func layout() {
-        
         backgroundColor = .moreAccent
         layer.cornerRadius = 15
+        
         snp.makeConstraints {
             $0.height.equalTo(day.rectHeight)
         }
@@ -170,10 +157,6 @@ extension SmallWeatherRect {
             $0.bottom.equalTo(maxminLabel.snp.bottom)
         }
     }
-}
-
-final class BigWeatherRect: UIView {
-    
 }
 
 #Preview {
