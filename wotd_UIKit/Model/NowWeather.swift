@@ -8,11 +8,7 @@
 import Foundation
 
 struct NowWeather {
-    
-    var dayText: String
-    
-    var temp: Double
-    
+    var nowTemp: Double
     var maxTemp: Int
     var minTemp: Int
     

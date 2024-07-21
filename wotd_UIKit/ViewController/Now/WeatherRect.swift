@@ -8,7 +8,8 @@
 import UIKit
 import SnapKit
 
-enum Day {
+// 현재 날씨 rect와 어제, 내일 날씨 rect의 size가 다르기 때문에 분기한다.
+enum IsToday {
     case today
     case notToday
     
@@ -64,16 +65,14 @@ enum Day {
 
 final class WeatherRect: UIView {
     
-    var day: Day
-    var weather: NowWeather
-
-    init(day: Day, weather: NowWeather) {
+    var day: ThreeDays
+     
+    init(day: ThreeDays) {
         self.day = day
-        self.weather = weather
         super.init(frame: CGRect())
         addSubviews()
         layout()
-        setInfo(weather)
+        setInfo(day)
         setLabel(day)
     }
     
@@ -105,20 +104,20 @@ extension WeatherRect {
         [dayLabel, tempLabel, maxminLabel, weatherIcon, descriptionLabel].forEach { addSubview($0) }
     }
     
-    func setLabel(_ day: Day) {
+    func setLabel(_ day: ThreeDays) {
         [dayLabel, tempLabel, maxminLabel, descriptionLabel].forEach { $0.textColor = .accent }
-        dayLabel.font = .systemFont(ofSize: day.dayLabelFontSize, weight: .medium)
-        tempLabel.font = .systemFont(ofSize: day.tempLabelFontSize, weight: .medium)
-        maxminLabel.font = .preferredFont(forTextStyle: day.maxminLabelFontStyle)
-        descriptionLabel.font = .preferredFont(forTextStyle: day.descriptionLabelFontStyle)
+        dayLabel.font = .systemFont(ofSize: day.isToday.dayLabelFontSize, weight: .medium)
+        tempLabel.font = .systemFont(ofSize: day.isToday.tempLabelFontSize, weight: .medium)
+        maxminLabel.font = .preferredFont(forTextStyle: day.isToday.maxminLabelFontStyle)
+        descriptionLabel.font = .preferredFont(forTextStyle: day.isToday.descriptionLabelFontStyle)
     }
     
-    func setInfo(_ weather: NowWeather) {
-        dayLabel.text = weather.dayText
-        tempLabel.text = weather.temp.toString
-        maxminLabel.text = "max \(weather.maxTemp.toString) min \(weather.minTemp.toString)"
-        descriptionLabel.text = weather.description
-        weatherIcon.image = UIImage(systemName: weather.icon)
+    func setInfo(_ day: ThreeDays) {
+        dayLabel.text = day.rawValue
+        tempLabel.text = day.weather.nowTemp.toString
+        maxminLabel.text = "max \(day.weather.maxTemp.toString) min \(day.weather.minTemp.toString)"
+        descriptionLabel.text = day.weather.description
+        weatherIcon.image = UIImage(systemName: day.weather.icon)
     }
     
     func layout() {
@@ -126,11 +125,11 @@ extension WeatherRect {
         layer.cornerRadius = 15
         
         snp.makeConstraints {
-            $0.height.equalTo(day.rectHeight)
+            $0.height.equalTo(day.isToday.rectHeight)
         }
         
         dayLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(day.offset)
+            $0.top.equalToSuperview().offset(day.isToday.offset)
             $0.leading.equalToSuperview().offset(30)
         }
         
@@ -147,7 +146,7 @@ extension WeatherRect {
         weatherIcon.snp.makeConstraints {
             $0.top.equalTo(dayLabel.snp.top)
             $0.trailing.equalToSuperview().inset(60)
-            $0.width.height.equalTo(day.weatherIconSize)
+            $0.width.height.equalTo(day.isToday.weatherIconSize)
         }
         
         descriptionLabel.snp.makeConstraints {

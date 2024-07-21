@@ -17,7 +17,4 @@ final class NowViewModel: ObservableObject {
         self.location = location
     }
     
-    let exampleY = NowWeather(dayText: "Yesterday", temp: 23.0, maxTemp: 25, minTemp: 19, code: 502)
-    let exampleN = NowWeather(dayText: "Now", temp: 24.5, maxTemp: 27, minTemp: 20, code: 520)
-    let exampleT = NowWeather(dayText: "Tomorrow", temp: 20.4, maxTemp: 22, minTemp: 18, code: 801)
 }
