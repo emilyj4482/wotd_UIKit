@@ -113,11 +113,11 @@ extension WeatherRect {
     }
     
     func setInfo(_ day: ThreeDays) {
-        dayLabel.text = day.rawValue
-        tempLabel.text = day.weather.nowTemp.toString
-        maxminLabel.text = "max \(day.weather.maxTemp.toString) min \(day.weather.minTemp.toString)"
-        descriptionLabel.text = day.weather.description
-        weatherIcon.image = UIImage(systemName: day.weather.icon)
+        dayLabel.text = day.title
+        tempLabel.text = day.weather?.nowTemp.toString ?? "-"
+        maxminLabel.text = "max \(day.weather?.maxTemp.toString ?? "-") min \(day.weather?.minTemp.toString ?? "-")"
+        descriptionLabel.text = day.weather?.description ?? ""
+        weatherIcon.image = UIImage(systemName: day.weather?.icon ?? "cloud.fill")
     }
     
     func layout() {

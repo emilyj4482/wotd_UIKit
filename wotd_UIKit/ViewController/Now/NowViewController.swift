@@ -55,9 +55,9 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var yesterdayRect = WeatherRect(day: .yesterday)
-    private var nowRect = WeatherRect(day: .today)
-    private var tomorrowRect = WeatherRect(day: .tomorrow)
+    private var yesterdayRect = WeatherRect(day: ThreeDays.yesterday)
+    private var nowRect = WeatherRect(day: ThreeDays.today)
+    private var tomorrowRect = WeatherRect(day: ThreeDays.tomorrow)
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  TempString.swift
+//  Extension.swift
 //  wotd_UIKit
 //
 //  Created by EMILY on 21/07/2024.
@@ -14,11 +14,8 @@ extension Double {
     }
     
     // n.n°
-    // >> api 통신을 통해 받은 data가 없을 경우 -로 표시
     var toString: String {
-        if self == 1000.0 {
-            return "-"
-        } else if self > -0.05 && self <= 0 {
+        if self > -0.05 && self <= 0 {
             // -0.0°로 표시되는 것 방지
             return "0.0°"
         } else {
@@ -29,12 +26,5 @@ extension Double {
 
 extension Int {
     // n°
-    // >> api 통신을 통해 받은 data가 없을 경우 -로 표시
-    var toString: String {
-        if self == 1000 {
-            return "-"
-        } else {
-            return "\(self)°"
-        }
-    }
+    var toString: String { "\(self)°" }
 }

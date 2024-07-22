@@ -8,6 +8,8 @@
 import Foundation
 
 struct NowWeather {
+    var isDaytime: Bool
+    
     var nowTemp: Double
     var maxTemp: Int
     var minTemp: Int
