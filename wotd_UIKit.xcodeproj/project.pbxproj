@@ -9,25 +9,40 @@
 /* Begin PBXBuildFile section */
 		A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7212C4AC446004F57AF /* AppDelegate.swift */; };
 		A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7232C4AC446004F57AF /* SceneDelegate.swift */; };
-		A110C7292C4AC446004F57AF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A110C7282C4AC446004F57AF /* Base */; };
 		A110C72B2C4AC447004F57AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A110C72A2C4AC447004F57AF /* Assets.xcassets */; };
 		A110C72E2C4AC447004F57AF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A110C72D2C4AC447004F57AF /* Base */; };
 		A110C7382C4AC660004F57AF /* NowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7372C4AC660004F57AF /* NowViewController.swift */; };
 		A110C73A2C4AC688004F57AF /* ThenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7392C4AC688004F57AF /* ThenViewController.swift */; };
 		A110C73C2C4AC6A1004F57AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */; };
+		A115DAC92C4BDEA100764929 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A115DAC82C4BDEA100764929 /* SnapKit */; };
+		A115DACD2C4BE63400764929 /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115DACC2C4BE63400764929 /* NowViewModel.swift */; };
+		A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B32C4C443900B818E7 /* NowWeather.swift */; };
+		A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B62C4C44E000B818E7 /* Icon.swift */; };
+		A168A3BA2C4C46EB00B818E7 /* TempString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B92C4C46EB00B818E7 /* TempString.swift */; };
+		A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */; };
+		A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */; };
+		A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */; };
+		A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A110C71E2C4AC446004F57AF /* wotd_UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd_UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A110C7212C4AC446004F57AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A110C7232C4AC446004F57AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A110C7282C4AC446004F57AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A110C72A2C4AC447004F57AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A110C72D2C4AC447004F57AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A110C72F2C4AC447004F57AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A110C7372C4AC660004F57AF /* NowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewController.swift; sourceTree = "<group>"; };
 		A110C7392C4AC688004F57AF /* ThenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThenViewController.swift; sourceTree = "<group>"; };
 		A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		A115DACC2C4BE63400764929 /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
+		A168A3B32C4C443900B818E7 /* NowWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowWeather.swift; sourceTree = "<group>"; };
+		A168A3B62C4C44E000B818E7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		A168A3B92C4C46EB00B818E7 /* TempString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempString.swift; sourceTree = "<group>"; };
+		A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDays.swift; sourceTree = "<group>"; };
+		A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A115DAC92C4BDEA100764929 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,8 +78,12 @@
 			children = (
 				A110C7212C4AC446004F57AF /* AppDelegate.swift */,
 				A110C7232C4AC446004F57AF /* SceneDelegate.swift */,
+				A168A3B52C4C444800B818E7 /* Model */,
 				A110C7352C4AC515004F57AF /* View */,
 				A110C7362C4AC51B004F57AF /* ViewController */,
+				A115DACE2C4BE63900764929 /* ViewModel */,
+				A168A3B82C4C44E500B818E7 /* Helper */,
+				A110C72C2C4AC447004F57AF /* LaunchScreen.storyboard */,
 				A110C72A2C4AC447004F57AF /* Assets.xcassets */,
 				A110C72F2C4AC447004F57AF /* Info.plist */,
 			);
@@ -73,8 +93,7 @@
 		A110C7352C4AC515004F57AF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A110C72C2C4AC447004F57AF /* LaunchScreen.storyboard */,
-				A110C7272C4AC446004F57AF /* Main.storyboard */,
+				A1ACA15A2C4C14B5008BAA51 /* TabBar */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -82,11 +101,71 @@
 		A110C7362C4AC51B004F57AF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				A110C7372C4AC660004F57AF /* NowViewController.swift */,
-				A110C7392C4AC688004F57AF /* ThenViewController.swift */,
-				A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */,
+				A1ACA15D2C4C1EDA008BAA51 /* Now */,
+				A1ACA15E2C4C1EE1008BAA51 /* Then */,
+				A1ACA15F2C4C1EE7008BAA51 /* Settings */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A115DACE2C4BE63900764929 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A115DACC2C4BE63400764929 /* NowViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A168A3B52C4C444800B818E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A168A3B32C4C443900B818E7 /* NowWeather.swift */,
+				A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A168A3B82C4C44E500B818E7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A168A3B62C4C44E000B818E7 /* Icon.swift */,
+				A168A3B92C4C46EB00B818E7 /* TempString.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		A1ACA15A2C4C14B5008BAA51 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */,
+				A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		A1ACA15D2C4C1EDA008BAA51 /* Now */ = {
+			isa = PBXGroup;
+			children = (
+				A110C7372C4AC660004F57AF /* NowViewController.swift */,
+				A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */,
+			);
+			path = Now;
+			sourceTree = "<group>";
+		};
+		A1ACA15E2C4C1EE1008BAA51 /* Then */ = {
+			isa = PBXGroup;
+			children = (
+				A110C7392C4AC688004F57AF /* ThenViewController.swift */,
+			);
+			path = Then;
+			sourceTree = "<group>";
+		};
+		A1ACA15F2C4C1EE7008BAA51 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -105,6 +184,9 @@
 			dependencies = (
 			);
 			name = wotd_UIKit;
+			packageProductDependencies = (
+				A115DAC82C4BDEA100764929 /* SnapKit */,
+			);
 			productName = wotd_UIKit;
 			productReference = A110C71E2C4AC446004F57AF /* wotd_UIKit.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +215,9 @@
 				Base,
 			);
 			mainGroup = A110C7152C4AC446004F57AF;
+			packageReferences = (
+				A115DAC72C4BDEA100764929 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = A110C71F2C4AC446004F57AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -149,7 +234,6 @@
 			files = (
 				A110C72B2C4AC447004F57AF /* Assets.xcassets in Resources */,
 				A110C72E2C4AC447004F57AF /* Base in Resources */,
-				A110C7292C4AC446004F57AF /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,22 +247,22 @@
 				A110C73C2C4AC6A1004F57AF /* SettingViewController.swift in Sources */,
 				A110C7382C4AC660004F57AF /* NowViewController.swift in Sources */,
 				A110C73A2C4AC688004F57AF /* ThenViewController.swift in Sources */,
+				A115DACD2C4BE63400764929 /* NowViewModel.swift in Sources */,
+				A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */,
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
+				A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */,
+				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
+				A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */,
+				A168A3BA2C4C46EB00B818E7 /* TempString.swift in Sources */,
 				A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */,
+				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
+				A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A110C7272C4AC446004F57AF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A110C7282C4AC446004F57AF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A110C72C2C4AC447004F57AF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -321,7 +405,6 @@
 				INFOPLIST_FILE = wotd_UIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -349,7 +432,6 @@
 				INFOPLIST_FILE = wotd_UIKit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,6 +469,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A115DAC72C4BDEA100764929 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A115DAC82C4BDEA100764929 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A115DAC72C4BDEA100764929 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A110C7162C4AC446004F57AF /* Project object */;
 }
