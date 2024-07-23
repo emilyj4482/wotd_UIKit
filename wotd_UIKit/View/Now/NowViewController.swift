@@ -7,8 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class NowViewController: UIViewController {
+
+    private var lm = LocationManager.shared
+    private var subscriptions = Set<AnyCancellable>()
     
     private var containerView: UIView = {
         let view: UIView = UIView()
@@ -35,10 +39,10 @@ final class NowViewController: UIViewController {
         return imageView
     }()
     
-    private var loacationText: UILabel = {
+    private var locationText: UILabel = {
         let label: UILabel = UILabel()
         
-        label.text = NowViewModel.shared.location
+        label.text = "-"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .accent
         
@@ -64,8 +68,11 @@ final class NowViewController: UIViewController {
         
         addSubviews()
         layout()
+        bind()
     }
+}
 
+extension NowViewController {
     private func addSubviews() {
         view.addSubview(containerView)
         
@@ -73,7 +80,7 @@ final class NowViewController: UIViewController {
         containerView.addSubview(weatherRectVStack)
         
         locationHStack.addArrangedSubview(locationImage)
-        locationHStack.addArrangedSubview(loacationText)
+        locationHStack.addArrangedSubview(locationText)
         
         weatherRectVStack.addArrangedSubview(yesterdayRect)
         weatherRectVStack.addArrangedSubview(nowRect)
@@ -100,6 +107,14 @@ final class NowViewController: UIViewController {
             $0.leading.equalTo(locationHStack.snp.leading)
             $0.trailing.equalTo(locationHStack.snp.trailing)
         }
+    }
+    
+    private func bind() {
+        lm.location
+            .sink { location in
+                self.locationText.text = location
+            }
+            .store(in: &subscriptions)
     }
 }
 

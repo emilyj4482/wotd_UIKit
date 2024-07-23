@@ -102,7 +102,6 @@
 				A108C1AF2C4FD8C200EF0B0C /* Manager */,
 				A168A3B52C4C444800B818E7 /* Model */,
 				A110C7352C4AC515004F57AF /* View */,
-				A110C7362C4AC51B004F57AF /* ViewController */,
 				A115DACE2C4BE63900764929 /* ViewModel */,
 				A168A3B82C4C44E500B818E7 /* Helper */,
 				A110C72C2C4AC447004F57AF /* LaunchScreen.storyboard */,
@@ -116,18 +115,11 @@
 			isa = PBXGroup;
 			children = (
 				A1ACA15A2C4C14B5008BAA51 /* TabBar */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A110C7362C4AC51B004F57AF /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 				A1ACA15D2C4C1EDA008BAA51 /* Now */,
 				A1ACA15E2C4C1EE1008BAA51 /* Then */,
 				A1ACA15F2C4C1EE7008BAA51 /* Settings */,
 			);
-			path = ViewController;
+			path = View;
 			sourceTree = "<group>";
 		};
 		A115DACE2C4BE63900764929 /* ViewModel */ = {

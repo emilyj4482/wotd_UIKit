@@ -13,12 +13,10 @@ final class NowViewModel: ObservableObject {
     
     static let shared = NowViewModel()
     
-    @Published var location: String
-    
     private var subscriptions = Set<AnyCancellable>()
     
-    init(location: String = "오창읍") {
-        self.location = location
+    init() {
+        
     }
     
     func apiTest() {
@@ -57,4 +55,8 @@ final class NowViewModel: ObservableObject {
             .store(in: &subscriptions)
 
     }
+}
+
+extension NowViewModel {
+
 }

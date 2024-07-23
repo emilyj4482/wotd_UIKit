@@ -6,10 +6,15 @@
 //
 
 import CoreLocation
+import Combine
 
 final class LocationManager: NSObject, ObservableObject {
     
+    static let shared: LocationManager = LocationManager()
+    
     private let locationManager = CLLocationManager()
+    
+    let location = PassthroughSubject<String, Never>()
     
     override init() {
         super.init()
@@ -19,9 +24,9 @@ final class LocationManager: NSObject, ObservableObject {
     
     private func getCityname(_ location: CLLocation) {
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { placemarks, error in
+        geocoder.reverseGeocodeLocation(location) { [weak self] placemarks, error in
             guard error == nil, let cityName = placemarks?[0].locality else { return }
-            print(cityName)
+            self?.location.send(cityName)
         }
     }
 }
