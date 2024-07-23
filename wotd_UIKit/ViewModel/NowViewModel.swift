@@ -22,18 +22,18 @@ final class NowViewModel: ObservableObject {
     }
     
     func apiTest() {
-        APIService.moment.setDt(dt: Date().dtString)
+        Request.moment.setDt(dt: Date().dtString)
         
         let lat = "36.715875"
         let lon = "127.4288454"
         
-        APIService.moment.setCoordinate(x: lon, y: lat)
+        Request.moment.setCoordinate(x: lon, y: lat)
         
         printWeather()
     }
     
     func fetchWeather() -> AnyPublisher<WeatherDescription, Error> {
-        return AF.request(APIService.moment.request)
+        return AF.request(Request.moment.request)
             .publishDecodable(type: WeatherDescription.self)
             .value()
             .mapError { afError in

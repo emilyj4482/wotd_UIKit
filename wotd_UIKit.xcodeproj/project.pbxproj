@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1A92C4FCFD100EF0B0C /* +Date.swift */; };
 		A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */; };
+		A108C1AE2C4FD87400EF0B0C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1AD2C4FD87400EF0B0C /* APIService.swift */; };
+		A108C1B12C4FD8E100EF0B0C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1B02C4FD8E100EF0B0C /* LocationManager.swift */; };
 		A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7212C4AC446004F57AF /* AppDelegate.swift */; };
 		A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7232C4AC446004F57AF /* SceneDelegate.swift */; };
 		A110C72B2C4AC447004F57AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A110C72A2C4AC447004F57AF /* Assets.xcassets */; };
@@ -22,7 +24,7 @@
 		A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B62C4C44E000B818E7 /* Icon.swift */; };
 		A168A3BA2C4C46EB00B818E7 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168A3B92C4C46EB00B818E7 /* Extension.swift */; };
 		A18EE80F2C4E982100652206 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A18EE80E2C4E982100652206 /* Alamofire */; };
-		A18EE8122C4E983B00652206 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EE8112C4E983B00652206 /* APIService.swift */; };
+		A18EE8122C4E983B00652206 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EE8112C4E983B00652206 /* Request.swift */; };
 		A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */; };
 		A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */; };
 		A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */; };
@@ -32,6 +34,8 @@
 /* Begin PBXFileReference section */
 		A108C1A92C4FCFD100EF0B0C /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
 		A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
+		A108C1AD2C4FD87400EF0B0C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A108C1B02C4FD8E100EF0B0C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A110C71E2C4AC446004F57AF /* wotd_UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd_UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A110C7212C4AC446004F57AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A110C7232C4AC446004F57AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +49,7 @@
 		A168A3B32C4C443900B818E7 /* NowWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowWeather.swift; sourceTree = "<group>"; };
 		A168A3B62C4C44E000B818E7 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		A168A3B92C4C46EB00B818E7 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		A18EE8112C4E983B00652206 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A18EE8112C4E983B00652206 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDays.swift; sourceTree = "<group>"; };
 		A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
@@ -65,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A108C1AF2C4FD8C200EF0B0C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A108C1B02C4FD8E100EF0B0C /* LocationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		A110C7152C4AC446004F57AF = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 				A110C7212C4AC446004F57AF /* AppDelegate.swift */,
 				A110C7232C4AC446004F57AF /* SceneDelegate.swift */,
 				A18EE8102C4E983200652206 /* Service */,
+				A108C1AF2C4FD8C200EF0B0C /* Manager */,
 				A168A3B52C4C444800B818E7 /* Model */,
 				A110C7352C4AC515004F57AF /* View */,
 				A110C7362C4AC51B004F57AF /* ViewController */,
@@ -148,7 +161,8 @@
 		A18EE8102C4E983200652206 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				A18EE8112C4E983B00652206 /* APIService.swift */,
+				A18EE8112C4E983B00652206 /* Request.swift */,
+				A108C1AD2C4FD87400EF0B0C /* APIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -265,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A108C1AE2C4FD87400EF0B0C /* APIService.swift in Sources */,
 				A110C73C2C4AC6A1004F57AF /* SettingViewController.swift in Sources */,
 				A110C7382C4AC660004F57AF /* NowViewController.swift in Sources */,
 				A110C73A2C4AC688004F57AF /* ThenViewController.swift in Sources */,
@@ -272,9 +287,10 @@
 				A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */,
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
 				A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */,
+				A108C1B12C4FD8E100EF0B0C /* LocationManager.swift in Sources */,
 				A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */,
 				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
-				A18EE8122C4E983B00652206 /* APIService.swift in Sources */,
+				A18EE8122C4E983B00652206 /* Request.swift in Sources */,
 				A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */,
 				A168A3BA2C4C46EB00B818E7 /* Extension.swift in Sources */,
 				A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */,
@@ -427,6 +443,9 @@
 				DEVELOPMENT_TEAM = 6N8M4PHX7P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = wotd_UIKit/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow us to access your location to update weather information.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow us to access your location to update weather information.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your location to update weather information.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -454,6 +473,9 @@
 				DEVELOPMENT_TEAM = 6N8M4PHX7P;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = wotd_UIKit/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Please allow us to access your location to update weather information.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Please allow us to access your location to update weather information.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your location to update weather information.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
