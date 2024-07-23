@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+import Alamofire
 
 final class NowViewModel: ObservableObject {
     
@@ -13,8 +15,46 @@ final class NowViewModel: ObservableObject {
     
     @Published var location: String
     
-    init(location: String = "Suwon") {
+    private var subscriptions = Set<AnyCancellable>()
+    
+    init(location: String = "오창읍") {
         self.location = location
     }
     
+    func apiTest() {
+        APIService.moment.setDt(dt: Date().dtString)
+        
+        let lat = "36.715875"
+        let lon = "127.4288454"
+        
+        APIService.moment.setCoordinate(x: lon, y: lat)
+        
+        printWeather()
+    }
+    
+    func fetchWeather() -> AnyPublisher<WeatherDescription, Error> {
+        return AF.request(APIService.moment.request)
+            .publishDecodable(type: WeatherDescription.self)
+            .value()
+            .mapError { afError in
+                return afError as Error
+            }
+            .eraseToAnyPublisher()
+    }
+    
+    func printWeather() {
+        fetchWeather()
+            .sink { completion in
+                switch completion {
+                case .failure(let error):
+                    print("[ERROR] \(error)")
+                case .finished:
+                    print("[FINISHED]")
+                }
+            } receiveValue: { weather in
+                print("[WEATHER] \(weather)")
+            }
+            .store(in: &subscriptions)
+
+    }
 }

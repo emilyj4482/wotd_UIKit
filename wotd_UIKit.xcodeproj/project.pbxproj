@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1A92C4FCFD100EF0B0C /* +Date.swift */; };
+		A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */; };
 		A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7212C4AC446004F57AF /* AppDelegate.swift */; };
 		A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110C7232C4AC446004F57AF /* SceneDelegate.swift */; };
 		A110C72B2C4AC447004F57AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A110C72A2C4AC447004F57AF /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A108C1A92C4FCFD100EF0B0C /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
+		A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
 		A110C71E2C4AC446004F57AF /* wotd_UIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wotd_UIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A110C7212C4AC446004F57AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A110C7232C4AC446004F57AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			children = (
 				A1A9AEB42C4CDF0000DC5EC6 /* ThreeDays.swift */,
 				A168A3B32C4C443900B818E7 /* NowWeather.swift */,
+				A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			children = (
 				A168A3B62C4C44E000B818E7 /* Icon.swift */,
 				A168A3B92C4C46EB00B818E7 /* Extension.swift */,
+				A108C1A92C4FCFD100EF0B0C /* +Date.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -266,11 +272,13 @@
 				A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */,
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
 				A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */,
+				A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */,
 				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
 				A18EE8122C4E983B00652206 /* APIService.swift in Sources */,
 				A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */,
 				A168A3BA2C4C46EB00B818E7 /* Extension.swift in Sources */,
 				A110C7242C4AC446004F57AF /* SceneDelegate.swift in Sources */,
+				A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */,
 				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
 				A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */,
 			);

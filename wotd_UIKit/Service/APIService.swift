@@ -55,7 +55,7 @@ struct APIService {
         params.updateValue(dt, forKey: "dt")
     }
     
-    mutating func detDate(date: String) {
+    mutating func setDate(date: String) {
         params.updateValue(date, forKey: "date")
     }
     

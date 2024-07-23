@@ -20,5 +20,8 @@ final class TabBarViewController: UITabBarController {
             }
         
         self.viewControllers = tabBarViewControllers
+        
+        NowViewModel.shared.apiTest()
+        // NowViewModel.shared.printWeather()
     }
 }
