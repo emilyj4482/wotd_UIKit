@@ -10,7 +10,7 @@ import UIKit
 final class TabBarViewController: UITabBarController {
     
     private var lm = LocationManager.shared
-    
+    private var vm = NowViewModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +23,6 @@ final class TabBarViewController: UITabBarController {
             }
         
         self.viewControllers = tabBarViewControllers
-        
-        
-        
-        // NowViewModel.shared.apiTest()
-        // NowViewModel.shared.printWeather()
     }
+    
 }

@@ -16,6 +16,8 @@ final class LocationManager: NSObject, ObservableObject {
     
     let location = PassthroughSubject<String, Never>()
     
+    let coordinates = PassthroughSubject<CLLocationCoordinate2D, Never>()
+    
     override init() {
         super.init()
         locationManager.delegate = self
@@ -57,13 +59,16 @@ extension LocationManager: CLLocationManagerDelegate {
         // 1. 수집한 위치정보의 행정구역명
         getCityname(location)
         // 2. 좌표 정보
-        let x = String(location.coordinate.longitude)
-        let y = String(location.coordinate.latitude)
+                //let x = String(location.coordinate.longitude)
+                //let y = String(location.coordinate.latitude)
+                
+                //ThreeDays.yesterday.setCoordinates(x: x, y: y)
+                //ThreeDays.today.setCoordinates(x: x, y: y)
+                //ThreeDays.tomorrow.setCoordinates(x: x, y: y)
+                coordinates.send(location.coordinate)
         
-        /// >>> 이거 combine 처리 가능할까?
-        ThreeDays.yesterday.setCoordinates(x: x, y: y)
-        ThreeDays.today.setCoordinates(x: x, y: y)
-        ThreeDays.tomorrow.setCoordinates(x: x, y: y)
+        
+        
         // 3. 위치 정보 수집 중지
         manager.stopUpdatingLocation()
         // 4.

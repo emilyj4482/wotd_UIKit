@@ -111,6 +111,7 @@ extension NowViewController {
     
     private func bind() {
         lm.location
+            .receive(on: DispatchQueue.main)
             .sink { location in
                 self.locationText.text = location
             }

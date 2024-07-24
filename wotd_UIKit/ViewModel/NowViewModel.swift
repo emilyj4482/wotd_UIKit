@@ -15,10 +15,19 @@ final class NowViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    let today: CurrentValueSubject<ThreeDays, Never>
+    
+    
+    
+    
+    
     init() {
-        
+        self.today = CurrentValueSubject(ThreeDays(title: "Now", isToday: .today))
+        today.value.setDate(dt: Date().dtString, date: Date().dateString)
+        setCoordinate()
     }
     
+    /*
     func apiTest() {
         Request.moment.setDt(dt: Date().dtString)
         
@@ -29,9 +38,10 @@ final class NowViewModel: ObservableObject {
         
         printWeather()
     }
+    */
     
     func fetchWeather() -> AnyPublisher<WeatherDescription, Error> {
-        return AF.request(Request.moment.request)
+        return AF.request(today.value.currentTempAndCodeRequest.request)
             .publishDecodable(type: WeatherDescription.self)
             .value()
             .mapError { afError in
@@ -54,6 +64,21 @@ final class NowViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
+    }
+    
+    
+    func setCoordinate() {
+        LocationManager.shared.coordinates
+            .map { ($0.longitude, $0.latitude) }
+            .map { (String($0), String($1)) }
+            .sink {
+                [weak self] lon, lat in
+                    self?.today.value.setCoordinates(x: lon, y: lat)
+                    print(self?.today.value.currentTempAndCodeRequest)
+                    print(self?.today.value.maxAndMinTempRequest)
+            }
+            
+            .store(in: &subscriptions)
     }
 }
 
