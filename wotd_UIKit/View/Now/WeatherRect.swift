@@ -7,73 +7,23 @@
 
 import UIKit
 import SnapKit
-
-// 현재 날씨 rect와 어제, 내일 날씨 rect의 size가 다르기 때문에 분기한다.
-enum IsToday {
-    case today
-    case notToday
-    
-    var rectHeight: UInt {
-        switch self {
-        case .today: 220
-        case .notToday: 180
-        }
-    }
-    
-    var offset: UInt {
-        switch self {
-        case .today: 38
-        case .notToday : 32
-        }
-    }
-    
-    var dayLabelFontSize: CGFloat {
-        switch self {
-        case .today: 30
-        case .notToday: 23
-        }
-    }
-    
-    var tempLabelFontSize: CGFloat {
-        switch self {
-        case .today: 60
-        case .notToday: 50
-        }
-    }
-    
-    var maxminLabelFontStyle: UIFont.TextStyle {
-        switch self {
-        case .today: .body
-        case .notToday: .subheadline
-        }
-    }
-    
-    var descriptionLabelFontStyle: UIFont.TextStyle {
-        switch self {
-        case .today: .subheadline
-        case .notToday: .caption1
-        }
-    }
-    
-    var weatherIconSize: UInt {
-        switch self {
-        case .today: 90
-        case .notToday : 70
-        }
-    }
-}
+import Combine
 
 final class WeatherRect: UIView {
     
-    var day: ThreeDays
+    private var vm = NowViewModel.shared
+    private var subscriptions = Set<AnyCancellable>()
+    
+    let day: Day
      
-    init(day: ThreeDays) {
+    init(day: Day) {
         self.day = day
         super.init(frame: CGRect())
         addSubviews()
         layout()
         setInfo(day)
         setLabel(day)
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -82,15 +32,28 @@ final class WeatherRect: UIView {
     
     private var dayLabel = UILabel()
     
-    private var tempLabel = UILabel()
+    private var tempLabel: UILabel = {
+        let label: UILabel = UILabel()
+        
+        label.text = "-"
+        
+        return label
+    }()
     
-    private var maxminLabel = UILabel()
+    private var maxminLabel: UILabel = {
+        let label: UILabel = UILabel()
+        
+        label.text = "max - min -"
+        
+        return label
+    }()
     
     private var weatherIcon: UIImageView = {
         let imageView: UIImageView = UIImageView()
         
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .accent
+        imageView.image = UIImage(systemName: "cloud.fill")
         
         return imageView
     }()
@@ -99,12 +62,11 @@ final class WeatherRect: UIView {
 }
 
 extension WeatherRect {
-    
-    func addSubviews() {
+    private func addSubviews() {
         [dayLabel, tempLabel, maxminLabel, weatherIcon, descriptionLabel].forEach { addSubview($0) }
     }
     
-    func setLabel(_ day: ThreeDays) {
+    private func setLabel(_ day: Day) {
         [dayLabel, tempLabel, maxminLabel, descriptionLabel].forEach { $0.textColor = .accent }
         dayLabel.font = .systemFont(ofSize: day.isToday.dayLabelFontSize, weight: .medium)
         tempLabel.font = .systemFont(ofSize: day.isToday.tempLabelFontSize, weight: .medium)
@@ -112,15 +74,11 @@ extension WeatherRect {
         descriptionLabel.font = .preferredFont(forTextStyle: day.isToday.descriptionLabelFontStyle)
     }
     
-    func setInfo(_ day: ThreeDays) {
-        dayLabel.text = day.rawValue
-        tempLabel.text = day.weather.nowTemp.toString
-        maxminLabel.text = "max \(day.weather.maxTemp.toString) min \(day.weather.minTemp.toString)"
-        descriptionLabel.text = day.weather.description
-        weatherIcon.image = UIImage(systemName: day.weather.icon)
+    private func setInfo(_ day: Day) {
+        dayLabel.text = day.title
     }
     
-    func layout() {
+    private func layout() {
         backgroundColor = .moreAccent
         layer.cornerRadius = 15
         
@@ -153,6 +111,28 @@ extension WeatherRect {
             $0.centerX.equalTo(weatherIcon.snp.centerX)
             $0.bottom.equalTo(maxminLabel.snp.bottom)
         }
+    }
+    
+    private func getDay(_ day: Day) -> CurrentValueSubject<ThreeDays, Never> {
+        switch day {
+        case .yesterday: vm.yesterday
+        case .today: vm.today
+        case .tomorrow: vm.tomorrow
+        }
+    }
+    
+    private func bind() {
+        getDay(day)
+            .receive(on: DispatchQueue.main)
+            .map { $0.weather }
+            .sink { [weak self] weather in
+                guard let weather = weather else { return }
+                self?.tempLabel.text = weather.nowTemp.toString
+                self?.maxminLabel.text = "max \(weather.maxTemp.toString) min \(weather.minTemp.toString)"
+                self?.descriptionLabel.text = weather.description
+                self?.weatherIcon.image = UIImage(systemName: weather.icon)
+            }
+            .store(in: &subscriptions)
     }
 }
 

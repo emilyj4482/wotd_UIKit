@@ -7,8 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class NowViewController: UIViewController {
+    
+    private var vm = NowViewModel.shared
+    private var subscriptions = Set<AnyCancellable>()
     
     private var containerView: UIView = {
         let view: UIView = UIView()
@@ -35,10 +39,10 @@ final class NowViewController: UIViewController {
         return imageView
     }()
     
-    private var loacationText: UILabel = {
+    private var locationText: UILabel = {
         let label: UILabel = UILabel()
         
-        label.text = NowViewModel.shared.location
+        label.text = "-"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .accent
         
@@ -55,17 +59,20 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var yesterdayRect = WeatherRect(day: .yesterday)
-    private var nowRect = WeatherRect(day: .today)
-    private var tomorrowRect = WeatherRect(day: .tomorrow)
+    private var yesterdayRect = WeatherRect(day: Day.yesterday)
+    private var nowRect = WeatherRect(day: Day.today)
+    private var tomorrowRect = WeatherRect(day: Day.tomorrow)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addSubviews()
         layout()
+        bind()
     }
+}
 
+extension NowViewController {
     private func addSubviews() {
         view.addSubview(containerView)
         
@@ -73,7 +80,7 @@ final class NowViewController: UIViewController {
         containerView.addSubview(weatherRectVStack)
         
         locationHStack.addArrangedSubview(locationImage)
-        locationHStack.addArrangedSubview(loacationText)
+        locationHStack.addArrangedSubview(locationText)
         
         weatherRectVStack.addArrangedSubview(yesterdayRect)
         weatherRectVStack.addArrangedSubview(nowRect)
@@ -92,7 +99,7 @@ final class NowViewController: UIViewController {
         }
         
         locationImage.snp.makeConstraints {
-            $0.width.height.equalTo(30)
+            $0.width.height.equalTo(35)
         }
         
         weatherRectVStack.snp.makeConstraints {
@@ -100,6 +107,15 @@ final class NowViewController: UIViewController {
             $0.leading.equalTo(locationHStack.snp.leading)
             $0.trailing.equalTo(locationHStack.snp.trailing)
         }
+    }
+    
+    private func bind() {
+        vm.location
+            .receive(on: DispatchQueue.main)
+            .sink { location in
+                self.locationText.text = location
+            }
+            .store(in: &subscriptions)
     }
 }
 

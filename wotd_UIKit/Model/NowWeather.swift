@@ -8,6 +8,8 @@
 import Foundation
 
 struct NowWeather {
+    var isDaytime: Bool
+    
     var nowTemp: Double
     var maxTemp: Int
     var minTemp: Int
@@ -23,11 +25,11 @@ struct NowWeather {
         case 300..<400:
             return Rain.drizzle.systemName
         case 500, 520:
-            //if isDaytime {
+            if isDaytime {
                 return Rain.lightDay.systemName
-            //} else {
-            //    return Rain.lightNight.systemName
-            //}
+            } else {
+                return Rain.lightNight.systemName
+            }
         case 501, 521, 531:
             return Rain.moderate.systemName
         case 502, 503, 504, 522:
@@ -45,21 +47,21 @@ struct NowWeather {
         case 771, 781:
             return Atmosphere.tornado.systemName
         case 731, 751, 761, 762:
-            //if isDaytime {
+            if isDaytime {
                 return Atmosphere.dustDay.systemName
-            //} else {
-            //    return Atmosphere.dustNight.systemName
-            //}
+            } else {
+                return Atmosphere.dustNight.systemName
+            }
         case 801, 802:
             return Clouds.moderate.systemName
         case 803, 804:
             return Clouds.overcast.systemName
         default:
-            //if isDaytime {
+            if isDaytime {
                 return Clear.day.systemName
-            //} else {
-            //    return Clear.night.systemName
-           // }
+            } else {
+                return Clear.night.systemName
+            }
         }
     }
     

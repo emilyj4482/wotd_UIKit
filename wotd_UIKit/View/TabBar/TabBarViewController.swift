@@ -8,6 +8,7 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
+    private var locationManager = LocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
