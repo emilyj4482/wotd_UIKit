@@ -11,7 +11,7 @@ import Combine
 
 final class NowViewController: UIViewController {
     
-    private var vm = NowViewModel()
+    private var vm = NowViewModel.shared
     private var subscriptions = Set<AnyCancellable>()
     
     private var containerView: UIView = {
@@ -59,9 +59,9 @@ final class NowViewController: UIViewController {
         
     }()
     
-    private var yesterdayRect = WeatherRect(day: ThreeDays.yesterday)
-    private var nowRect = WeatherRect(day: ThreeDays.today)
-    private var tomorrowRect = WeatherRect(day: ThreeDays.tomorrow)
+    private var yesterdayRect = WeatherRect(day: Day.yesterday)
+    private var nowRect = WeatherRect(day: Day.today)
+    private var tomorrowRect = WeatherRect(day: Day.tomorrow)
     
     override func viewDidLoad() {
         super.viewDidLoad()

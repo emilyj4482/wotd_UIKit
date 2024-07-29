@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10692642C580D3900969E35 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10692632C580D3900969E35 /* LocationManager.swift */; };
+		A10692662C5813A300969E35 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10692652C5813A300969E35 /* Day.swift */; };
 		A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1A92C4FCFD100EF0B0C /* +Date.swift */; };
 		A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */; };
 		A108C1AE2C4FD87400EF0B0C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108C1AD2C4FD87400EF0B0C /* APIService.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10692632C580D3900969E35 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A10692652C5813A300969E35 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		A108C1A92C4FCFD100EF0B0C /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
 		A108C1AB2C4FD1B400EF0B0C /* WeatherDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDescription.swift; sourceTree = "<group>"; };
 		A108C1AD2C4FD87400EF0B0C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 		A108C1AF2C4FD8C200EF0B0C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A10692632C580D3900969E35 /* LocationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		A168A3B82C4C44E500B818E7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				A10692652C5813A300969E35 /* Day.swift */,
 				A168A3B62C4C44E000B818E7 /* Icon.swift */,
 				A168A3B92C4C46EB00B818E7 /* Extension.swift */,
 				A108C1A92C4FCFD100EF0B0C /* +Date.swift */,
@@ -288,6 +294,8 @@
 				A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */,
 				A14838072C501C7700C957C5 /* WeatherInfo.swift in Sources */,
 				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
+				A10692642C580D3900969E35 /* LocationManager.swift in Sources */,
+				A10692662C5813A300969E35 /* Day.swift in Sources */,
 				A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
