@@ -10,8 +10,8 @@ import SnapKit
 import Combine
 
 final class NowViewController: UIViewController {
-
-    private var lm = LocationManager.shared
+    
+    private var vm = NowViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
     private var containerView: UIView = {
@@ -99,7 +99,7 @@ extension NowViewController {
         }
         
         locationImage.snp.makeConstraints {
-            $0.width.height.equalTo(30)
+            $0.width.height.equalTo(35)
         }
         
         weatherRectVStack.snp.makeConstraints {
@@ -110,7 +110,7 @@ extension NowViewController {
     }
     
     private func bind() {
-        lm.location
+        vm.location
             .receive(on: DispatchQueue.main)
             .sink { location in
                 self.locationText.text = location

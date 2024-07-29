@@ -25,4 +25,15 @@ extension Date {
         
         return dateFormatter.string(from: self)
     }
+    
+    // 현재 시간이 day인지 night인지 구분하여 day면 true, night이면 false 반환
+    var isDayTime: Bool {
+        let hour = Calendar.current.component(.hour, from: self)
+        
+        if hour >= 6 && hour <= 17 {
+            return true
+        } else {
+            return false
+        }
+    }
 }

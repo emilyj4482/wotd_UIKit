@@ -8,9 +8,7 @@
 import UIKit
 
 final class TabBarViewController: UITabBarController {
-    
-    private var lm = LocationManager.shared
-    private var vm = NowViewModel.shared
+    private var vm = NowViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,5 +22,4 @@ final class TabBarViewController: UITabBarController {
         
         self.viewControllers = tabBarViewControllers
     }
-    
 }
