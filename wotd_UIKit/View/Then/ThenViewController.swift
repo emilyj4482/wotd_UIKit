@@ -16,12 +16,18 @@ class ThenViewController: UIViewController {
     
     private var weatherListView = WeatherListView()
     
-    private var addButton: UIButton = {
+    private lazy var addButton: UIButton = {
         let button: UIButton = UIButton()
+        
+        let action = UIAction { [weak self] _ in
+            print("tapped")
+            self?.test()
+        }
         
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.tintColor = .accent
         button.imageView?.contentMode = .scaleAspectFit
+        button.addAction(action, for: .touchUpInside)
         
         return button
     }()
@@ -51,6 +57,12 @@ class ThenViewController: UIViewController {
         addButton.imageView?.snp.makeConstraints {
             $0.width.height.equalTo(65)
         }
+    }
+    
+    func test() {
+        let vc = UINavigationController(rootViewController: ComparisionViewController(weather: vm.weathers[0]))
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
     }
 }
 

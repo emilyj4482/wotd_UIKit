@@ -26,6 +26,10 @@ final class WeatherListTableView: UITableView {
         backgroundColor = .descent
         register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)
     }
+    
+    private func test() {
+        print("test printed")
+    }
 }
 
 extension WeatherListTableView: UITableViewDelegate, UITableViewDataSource {
@@ -49,6 +53,8 @@ extension WeatherListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let weather = vm.weathers[indexPath.row]
         print(weather)
+        test()
+        
     }
 }
 
