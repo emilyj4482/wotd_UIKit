@@ -10,5 +10,5 @@ import Foundation
 final class ThenViewModel: ObservableObject {
     static let shared = ThenViewModel()
     
-    
+    let isEmpty: Bool = false
 }

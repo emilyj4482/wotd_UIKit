@@ -6,24 +6,29 @@
 //
 
 import UIKit
+import SnapKit
 
 class ThenViewController: UIViewController {
     
+    private var vm = ThenViewModel.shared
+    
     private var emptyView = EmptyView()
+    
+    private var weatherListView = WeatherListView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addSubviews()
-        layout()
+        addSubviews(vm.isEmpty ? emptyView : weatherListView)
+        layout(vm.isEmpty ? emptyView : weatherListView)
     }
     
-    private func addSubviews() {
-        view.addSubview(emptyView)
+    private func addSubviews(_ subview: UIView) {
+        view.addSubview(subview)
     }
     
-    private func layout() {
-        emptyView.snp.makeConstraints {
+    private func layout(_ subview: UIView) {
+        subview.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
