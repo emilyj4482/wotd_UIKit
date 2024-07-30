@@ -34,6 +34,7 @@
 		A1ACA1572C4C1268008BAA51 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */; };
 		A1ACA1592C4C1277008BAA51 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */; };
 		A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */; };
+		A1F4E25A2C58EA7800832B53 /* WeatherListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4E2592C58EA7800832B53 /* WeatherListTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		A1ACA1562C4C1268008BAA51 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		A1ACA1582C4C1276008BAA51 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		A1ACA15B2C4C1ED3008BAA51 /* WeatherRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRect.swift; sourceTree = "<group>"; };
+		A1F4E2592C58EA7800832B53 /* WeatherListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				A110C7392C4AC688004F57AF /* ThenViewController.swift */,
 				A12BBF6A2C58ADD200A5626A /* EmptyView.swift */,
 				A12BBF6C2C58ADED00A5626A /* WeatherListView.swift */,
+				A1F4E2592C58EA7800832B53 /* WeatherListTableView.swift */,
 			);
 			path = Then;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				A108C1AA2C4FCFD100EF0B0C /* +Date.swift in Sources */,
 				A14838072C501C7700C957C5 /* WeatherInfo.swift in Sources */,
 				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
+				A1F4E25A2C58EA7800832B53 /* WeatherListTableView.swift in Sources */,
 				A10692642C580D3900969E35 /* LocationManager.swift in Sources */,
 				A10692662C5813A300969E35 /* Day.swift in Sources */,
 				A168A3B72C4C44E000B818E7 /* Icon.swift in Sources */,

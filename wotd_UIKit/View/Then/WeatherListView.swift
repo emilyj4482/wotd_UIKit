@@ -19,6 +19,8 @@ final class WeatherListView: UIView {
         return label
     }()
     
+    private var tableView = WeatherListTableView()
+    
     init() {
         super.init(frame: CGRect())
         addSubview()
@@ -30,7 +32,7 @@ final class WeatherListView: UIView {
     }
     
     private func addSubview() {
-        [titleLabel].forEach { addSubview($0) }
+        [titleLabel, tableView].forEach { addSubview($0) }
     }
     
     private func layout() {
@@ -39,6 +41,12 @@ final class WeatherListView: UIView {
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
