@@ -8,6 +8,8 @@
 import UIKit
 
 final class WeatherListTableView: UITableView {
+    
+    private var vm = ThenViewModel.shared
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -22,24 +24,26 @@ final class WeatherListTableView: UITableView {
         delegate = self
         dataSource = self
         backgroundColor = .descent
-        // register(UINib(nibName: WeatherCellKey.identifier, bundle: .main), forCellReuseIdentifier: WeatherCellKey.identifier)
-        //register(nil, forCellReuseIdentifier: WeatherCellKey.identifier)
-        
+        register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)
     }
 }
 
 extension WeatherListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        vm.weathers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        /*
-        guard let cell = dequeueReusableCell(withIdentifier: WeatherCellKey.identifier, for: indexPath) as? WeatherCell else { return UITableViewCell() }
+        guard let cell = dequeueReusableCell(withIdentifier: WeatherCell.identifier, for: indexPath) as? WeatherCell else { return UITableViewCell() }
+        
+        let weather = vm.weathers[indexPath.row]
+        cell.bind(weather: weather)
         
         return cell
-         */
-        UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
     }
 }
 

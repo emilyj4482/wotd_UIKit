@@ -37,10 +37,10 @@ extension LocationManager: CLLocationManagerDelegate {
             print("[Auth] Denied")
         case .authorizedAlways:
             print("[Auth] Always")
-            //locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
         case .authorizedWhenInUse:
             print("[Auth] When in use")
-            //locationManager.startUpdatingLocation()
+            // locationManager.startUpdatingLocation()
         @unknown default:
             break
         }
