@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol ThenViewDelegate {
+    func pushComparisionViewController(with weather: ThenWeather)
+}
+
 final class ThenViewModel: ObservableObject {
     static let shared = ThenViewModel()
     

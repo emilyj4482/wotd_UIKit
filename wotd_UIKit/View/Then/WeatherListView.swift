@@ -21,8 +21,28 @@ final class WeatherListView: UIView {
     
     private var tableView = WeatherListTableView()
     
+    private lazy var testButton: UIButton = {
+        let button: UIButton = UIButton()
+        
+        let action = UIAction { [weak self] _ in
+            print("TEST")
+            self?.test()
+        }
+        
+        button.setTitle("TEST", for: .normal)
+        button.setTitleColor(.accent, for: .normal)
+        button.addAction(action, for: .touchUpInside)
+        
+        return button
+    }()
+    
+    var delegate: ThenViewDelegate?
+    
     init() {
         super.init(frame: CGRect())
+        
+        
+        
         addSubview()
         layout()
     }
@@ -31,8 +51,12 @@ final class WeatherListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func test() {
+        delegate?.pushComparisionViewController(with: ThenViewModel.shared.weathers[0])
+    }
+    
     private func addSubview() {
-        [titleLabel, tableView].forEach { addSubview($0) }
+        [titleLabel, testButton, tableView].forEach { addSubview($0) }
     }
     
     private func layout() {
@@ -44,9 +68,14 @@ final class WeatherListView: UIView {
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(testButton.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
+        }
+        
+        testButton.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(10)
+            $0.centerX.equalToSuperview()
         }
     }
 }

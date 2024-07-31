@@ -10,6 +10,8 @@ import UIKit
 final class WeatherListTableView: UITableView {
     
     private var vm = ThenViewModel.shared
+    
+    // var delegate: ThenViewDelegate?
 
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
@@ -27,8 +29,9 @@ final class WeatherListTableView: UITableView {
         register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)
     }
     
-    private func test() {
+    private func test(with weather: ThenWeather) {
         print("test printed")
+        // delegate.pushComparisionViewController(with: weather)
     }
 }
 
@@ -53,7 +56,7 @@ extension WeatherListTableView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let weather = vm.weathers[indexPath.row]
         print(weather)
-        test()
+        // test()
         
     }
 }

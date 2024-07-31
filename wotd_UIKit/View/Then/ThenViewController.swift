@@ -35,6 +35,8 @@ class ThenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        weatherListView.delegate = self
+        
         addSubviews(vm.isEmpty ? emptyView : weatherListView)
         layout(vm.isEmpty ? emptyView : weatherListView)
     }
@@ -63,6 +65,12 @@ class ThenViewController: UIViewController {
         let vc = UINavigationController(rootViewController: ComparisionViewController(weather: vm.weathers[0]))
         vc.modalPresentationStyle = .pageSheet
         present(vc, animated: true)
+    }
+}
+
+extension ThenViewController: ThenViewDelegate {
+    func pushComparisionViewController(with weather: ThenWeather) {
+        navigationController?.pushViewController(ComparisionViewController(weather: weather), animated: true)
     }
 }
 
