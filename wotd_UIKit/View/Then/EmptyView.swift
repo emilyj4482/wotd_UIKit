@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class EmptyView: UIView {
-    private var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView: UIImageView = UIImageView()
         
         imageView.image = UIImage(systemName: "cloud.sun.fill")?.withRenderingMode(.alwaysOriginal)
@@ -18,7 +18,7 @@ final class EmptyView: UIView {
         return imageView
     }()
     
-    private var descriptionLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label: UILabel = UILabel()
         
         label.text = "Add a weather of the specific day and city you want to compare to today's one."

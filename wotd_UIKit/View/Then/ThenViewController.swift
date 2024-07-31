@@ -12,16 +12,15 @@ class ThenViewController: UIViewController {
     
     private var vm = ThenViewModel.shared
     
-    private var emptyView = EmptyView()
+    private lazy var emptyView = EmptyView()
     
-    private var weatherListView = WeatherListView()
+    private lazy var weatherListView = WeatherListView()
     
     private lazy var addButton: UIButton = {
         let button: UIButton = UIButton()
         
         let action = UIAction { [weak self] _ in
-            print("tapped")
-            self?.test()
+            self?.presentAddWeatherViewController()
         }
         
         button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
@@ -61,7 +60,7 @@ class ThenViewController: UIViewController {
         }
     }
     
-    func test() {
+    func presentAddWeatherViewController() {
         let vc = UINavigationController(rootViewController: ComparisionViewController(weather: vm.weathers[0]))
         vc.modalPresentationStyle = .pageSheet
         present(vc, animated: true)

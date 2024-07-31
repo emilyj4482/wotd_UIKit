@@ -12,6 +12,8 @@ final class WeatherListView: UIView {
     
     private var vm = ThenViewModel.shared
     
+    var delegate: ThenViewDelegate?
+    
     private var titleLabel: UILabel = {
         let label: UILabel = UILabel()
         
@@ -22,7 +24,7 @@ final class WeatherListView: UIView {
         return label
     }()
     
-    private var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView: UITableView = UITableView()
         
         tableView.backgroundColor = .descent
@@ -30,8 +32,6 @@ final class WeatherListView: UIView {
         
         return tableView
     }()
-
-    var delegate: ThenViewDelegate?
     
     init() {
         super.init(frame: CGRect())
@@ -45,10 +45,6 @@ final class WeatherListView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func pushComparisionViewController(with weather: ThenWeather) {
-        delegate?.pushComparisionViewController(with: weather)
     }
     
     private func addSubview() {
@@ -68,6 +64,10 @@ final class WeatherListView: UIView {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    private func pushComparisionViewController(with weather: ThenWeather) {
+        delegate?.pushComparisionViewController(with: weather)
     }
 }
 

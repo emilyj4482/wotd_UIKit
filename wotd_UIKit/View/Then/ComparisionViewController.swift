@@ -12,16 +12,7 @@ final class ComparisionViewController: UIViewController {
     
     let weather: ThenWeather
     
-    init(weather: ThenWeather) {
-        self.weather = weather
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label: UILabel = UILabel()
         
         label.textColor = .descent
@@ -30,7 +21,7 @@ final class ComparisionViewController: UIViewController {
         return label
     }()
     
-    private var tempLabel: UILabel = {
+    private lazy var tempLabel: UILabel = {
         let label: UILabel = UILabel()
         
         label.textColor = .descent
@@ -38,6 +29,15 @@ final class ComparisionViewController: UIViewController {
         
         return label
     }()
+    
+    init(weather: ThenWeather) {
+        self.weather = weather
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
