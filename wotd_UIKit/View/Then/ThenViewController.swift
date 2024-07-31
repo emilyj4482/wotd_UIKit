@@ -61,8 +61,7 @@ class ThenViewController: UIViewController {
     }
     
     func presentAddWeatherViewController() {
-        let vc = UINavigationController(rootViewController: ComparisionViewController(weather: vm.weathers[0]))
-        vc.modalPresentationStyle = .pageSheet
+        let vc = UINavigationController(rootViewController: AddWeatherViewController())
         present(vc, animated: true)
     }
 }

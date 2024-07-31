@@ -15,7 +15,7 @@ final class ComparisionViewController: UIViewController {
     private lazy var dateLabel: UILabel = {
         let label: UILabel = UILabel()
         
-        label.textColor = .descent
+        label.textColor = .accent
         label.font = .preferredFont(forTextStyle: .largeTitle)
         
         return label
@@ -24,7 +24,7 @@ final class ComparisionViewController: UIViewController {
     private lazy var tempLabel: UILabel = {
         let label: UILabel = UILabel()
         
-        label.textColor = .descent
+        label.textColor = .accent
         label.font = .preferredFont(forTextStyle: .title1)
         
         return label
@@ -41,7 +41,7 @@ final class ComparisionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .accent
+        view.backgroundColor = .descent
         
         addSubviews()
         layout()
