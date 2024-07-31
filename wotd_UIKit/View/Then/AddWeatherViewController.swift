@@ -26,6 +26,37 @@ final class AddWeatherViewController: UIViewController {
         return label
     }()
     
+    private lazy var datePicker: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .automatic
+        datePicker.tintColor = .accent
+        
+        return datePicker
+    }()
+    
+    private lazy var textField: UITextField = {
+        let textField = UITextField()
+        
+        textField.placeholder = "Enter a city name."
+        textField.borderStyle = .none
+        textField.textColor = .accent
+        
+        return textField
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
+        button.tintColor = .accent
+        button.contentMode = .scaleAspectFit
+        // button.isHidden = true
+        
+        return button
+    }()
+    
     private lazy var addButton: UIButton = {
         let button = UIButton()
         
@@ -40,6 +71,7 @@ final class AddWeatherViewController: UIViewController {
         button.configuration?.baseBackgroundColor = .accent
         
         button.addAction(action, for: .touchUpInside)
+        // button.isEnabled = false
         
         return button
     }()
@@ -60,7 +92,7 @@ final class AddWeatherViewController: UIViewController {
     
     
     private func addSubviews() {
-        [dateLabel, cityLabel, addButton].forEach { view.addSubview($0) }
+        [dateLabel, cityLabel, datePicker, textField, deleteButton, addButton].forEach { view.addSubview($0) }
     }
     
     private func layout() {
@@ -75,6 +107,22 @@ final class AddWeatherViewController: UIViewController {
         cityLabel.snp.makeConstraints {
             $0.top.equalTo(dateLabel.snp.bottom).offset(30)
             $0.leading.equalTo(dateLabel.snp.leading)
+        }
+        
+        datePicker.snp.makeConstraints {
+            $0.centerY.equalTo(dateLabel.snp.centerY)
+            $0.leading.equalTo(dateLabel.snp.trailing).offset(20)
+        }
+        
+        textField.snp.makeConstraints {
+            $0.centerY.equalTo(cityLabel.snp.centerY)
+            $0.leading.equalTo(datePicker.snp.leading)
+            $0.width.equalTo(260)
+        }
+        
+        deleteButton.snp.makeConstraints {
+            $0.centerY.equalTo(textField.snp.centerY)
+            $0.leading.equalTo(textField.snp.trailing).offset(10)
         }
         
         addButton.snp.makeConstraints {
