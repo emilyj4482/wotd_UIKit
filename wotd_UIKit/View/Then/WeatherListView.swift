@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 final class WeatherListView: UIView {
+    
+    private var vm = ThenViewModel.shared
+    
     private var titleLabel: UILabel = {
         let label: UILabel = UILabel()
         
@@ -19,8 +22,15 @@ final class WeatherListView: UIView {
         return label
     }()
     
-    private var tableView = WeatherListTableView()
-    
+    private var tableView: UITableView = {
+        let tableView: UITableView = UITableView()
+        
+        tableView.backgroundColor = .descent
+        tableView.register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)
+        
+        return tableView
+    }()
+    /*
     private lazy var testButton: UIButton = {
         let button: UIButton = UIButton()
         
@@ -35,13 +45,14 @@ final class WeatherListView: UIView {
         
         return button
     }()
-    
+    */
     var delegate: ThenViewDelegate?
     
     init() {
         super.init(frame: CGRect())
         
-        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         addSubview()
         layout()
@@ -56,7 +67,7 @@ final class WeatherListView: UIView {
     }
     
     private func addSubview() {
-        [titleLabel, testButton, tableView].forEach { addSubview($0) }
+        [titleLabel, tableView].forEach { addSubview($0) }
     }
     
     private func layout() {
@@ -68,15 +79,42 @@ final class WeatherListView: UIView {
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(testButton.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
-        
+        /*
         testButton.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
+         */
+    }
+}
+
+extension WeatherListView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        vm.weathers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherCell.identifier, for: indexPath) as? WeatherCell else { return UITableViewCell() }
+        
+        let weather = vm.weathers[indexPath.row]
+        cell.bind(weather: weather)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let weather = vm.weathers[indexPath.row]
+        print(weather)
+        test()
+        
     }
 }
 

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+/*
 final class WeatherListTableView: UITableView {
     
     private var vm = ThenViewModel.shared
@@ -60,7 +60,7 @@ extension WeatherListTableView: UITableViewDelegate, UITableViewDataSource {
         
     }
 }
-
+*/
 #Preview {
     ThenViewController()
 }
