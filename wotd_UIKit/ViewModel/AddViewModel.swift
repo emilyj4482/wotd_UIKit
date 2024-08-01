@@ -5,8 +5,9 @@
 //  Created by EMILY on 01/08/2024.
 //
 
-import Foundation
+// import Foundation
 import Combine
+import UIKit
 
 final class AddViewModel: ObservableObject {
     
@@ -16,7 +17,7 @@ final class AddViewModel: ObservableObject {
     
     @Published var cities: [City] = [] {
         didSet {
-            print(cities)
+            cities.forEach { print($0.fullName) }
         }
     }
     

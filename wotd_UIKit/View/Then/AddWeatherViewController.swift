@@ -10,6 +10,8 @@ import SnapKit
 
 final class AddWeatherViewController: UIViewController {
     
+    private let vm = AddViewModel()
+    
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         
@@ -42,6 +44,7 @@ final class AddWeatherViewController: UIViewController {
         textField.placeholder = "Enter a city name."
         textField.borderStyle = .none
         textField.textColor = .accent
+        textField.delegate = self
         
         return textField
     }()
@@ -49,10 +52,15 @@ final class AddWeatherViewController: UIViewController {
     private lazy var deleteButton: UIButton = {
         let button = UIButton()
         
+        let action = UIAction { [weak self] _ in
+            self?.textField.text = ""
+        }
+        
+        button.addAction(action, for: .touchUpInside)
         button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
         button.tintColor = .accent
         button.contentMode = .scaleAspectFit
-        // button.isHidden = true
+        button.isHidden = true
         
         return button
     }()
@@ -127,13 +135,30 @@ final class AddWeatherViewController: UIViewController {
         
         addButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview().offset(-50)
+            $0.top.equalTo(textField.snp.bottom).offset(150)
             $0.width.equalTo(100)
             $0.height.equalTo(50)
         }
     }
 }
 
+extension AddWeatherViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // keyboard return tap 시 keyboard dismiss
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        // textfield 입력값으로 행정구역명 search
+        vm.searchCities(searchText: textField.text ?? "")
+        if textField.text?.count == 0 {
+            deleteButton.isHidden = true
+        } else {
+            deleteButton.isHidden = false
+        }
+    }
+}
 #Preview {
     ThenViewController()
 }
