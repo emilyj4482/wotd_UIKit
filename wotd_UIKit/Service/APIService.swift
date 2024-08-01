@@ -32,4 +32,12 @@ enum APIService {
         
         return Publishers.CombineLatest(fetchedMoment, fetchedDay).eraseToAnyPublisher()
     }
+    
+    static func requestWeatherInfo(_ request: Request) -> AnyPublisher<WeatherInfo, Error> {
+        return AF.request(request.request)
+            .publishDecodable(type: WeatherInfo.self)
+            .value()
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
 }

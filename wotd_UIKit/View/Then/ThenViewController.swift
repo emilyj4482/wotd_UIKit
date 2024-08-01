@@ -36,8 +36,8 @@ class ThenViewController: UIViewController {
         
         weatherListView.delegate = self
         
-        addSubviews(vm.isEmpty ? emptyView : weatherListView)
-        layout(vm.isEmpty ? emptyView : weatherListView)
+        addSubviews(vm.weathers.isEmpty ? emptyView : weatherListView)
+        layout(vm.weathers.isEmpty ? emptyView : weatherListView)
     }
     
     private func addSubviews(_ subview: UIView) {

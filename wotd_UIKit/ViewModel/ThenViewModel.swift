@@ -17,10 +17,7 @@ final class ThenViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    let isEmpty: Bool = false
-    
     @Published var weathers: [ThenWeather] = []
-    
     
     @Published var todaysWeather: ThenWeather? {
         didSet {
@@ -28,11 +25,9 @@ final class ThenViewModel: ObservableObject {
         }
     }
     
-    
     init() {
         bind()
         weathers.append(ThenWeather(date: Date() - 2592000, city: "London", min: 7, max: 16, morning: 9, afternoon: 16, evening: 11, night: 7))
-        
     }
     
     func bind() {
@@ -41,11 +36,8 @@ final class ThenViewModel: ObservableObject {
         vm.location
             .combineLatest(vm.weatherInfo)
             .receive(on: DispatchQueue.main)
-            .map { (location, weatherInfo) in
-                return (location, weatherInfo.temperature)
-            }
-            .map { location, temp in
-                return ThenWeather(date: Date(), city: location, min: temp.max.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
+            .map { location, weatherInfo in
+                return weatherInfo.toThenWeather(date: Date(), city: location)
             }
             .sink { [weak self] thenWeather in
                 self?.todaysWeather = thenWeather
