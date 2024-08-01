@@ -7,25 +7,44 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class ComparisionViewController: UIViewController {
+    
+    private let vm = ThenViewModel.shared
+    private var subscriptions = Set<AnyCancellable>()
     
     let weather: ThenWeather
     
     private lazy var dateLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
-        label.textColor = .accent
         label.font = .preferredFont(forTextStyle: .largeTitle)
         
         return label
     }()
     
     private lazy var tempLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
-        label.textColor = .accent
         label.font = .preferredFont(forTextStyle: .title1)
+        
+        return label
+    }()
+    
+    private lazy var cityLabel: UILabel = {
+        let label = UILabel()
+        
+        
+        label.font = .preferredFont(forTextStyle: .title1)
+        
+        return label
+    }()
+    
+    private lazy var maxTempLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .preferredFont(forTextStyle: .title2)
         
         return label
     }()
@@ -45,11 +64,15 @@ final class ComparisionViewController: UIViewController {
         
         addSubviews()
         layout()
-        bind()
+        setThenWeatherInfo()
+        bindTodaysWeather()
     }
     
     private func addSubviews() {
-        [dateLabel, tempLabel].forEach { view.addSubview($0) }
+        [dateLabel, tempLabel, cityLabel, maxTempLabel].forEach { view.addSubview($0) }
+        
+        [dateLabel, tempLabel, cityLabel, maxTempLabel].forEach { $0.textColor = .accent }
+        
     }
     
     private func layout() {
@@ -61,11 +84,31 @@ final class ComparisionViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(dateLabel.snp.bottom).offset(20)
         }
+        
+        cityLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(tempLabel.snp.bottom).offset(50)
+        }
+        
+        maxTempLabel.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(cityLabel.snp.bottom).offset(20)
+        }
     }
     
-    func bind() {
+    func setThenWeatherInfo() {
         dateLabel.text = weather.date.dateString
         tempLabel.text = weather.afternoon.toString
+    }
+    
+    func bindTodaysWeather() {
+        vm.$todaysWeather
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] weather in
+                self?.cityLabel.text = weather?.city ?? "-"
+                self?.maxTempLabel.text = weather?.max.toString ?? "-"
+            }
+            .store(in: &subscriptions)
     }
 }
 

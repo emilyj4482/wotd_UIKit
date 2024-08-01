@@ -21,16 +21,18 @@ final class ThenViewModel: ObservableObject {
     
     @Published var weathers: [ThenWeather] = []
     
-    /*
-    @Published var nowWeather: ThenWeather {
+    
+    @Published var todaysWeather: ThenWeather? {
         didSet {
-            print(nowWeather)
+            print(todaysWeather ?? "[todaysWeather] nil")
         }
     }
-    */
+    
     
     init() {
+        bind()
         weathers.append(ThenWeather(date: Date() - 2592000, city: "London", min: 7, max: 16, morning: 9, afternoon: 16, evening: 11, night: 7))
+        
     }
     
     func bind() {
@@ -45,8 +47,8 @@ final class ThenViewModel: ObservableObject {
             .map { location, temp in
                 return ThenWeather(date: Date(), city: location, min: temp.max.toInt, max: temp.max.toInt, morning: temp.morning.toInt, afternoon: temp.afternoon.toInt, evening: temp.evening.toInt, night: temp.night.toInt)
             }
-            .sink { thenWeather in
-                // 이걸 어케 하면 nowWeather에 주입할 수 있을까
+            .sink { [weak self] thenWeather in
+                self?.todaysWeather = thenWeather
             }
             .store(in: &subscriptions)
     }
