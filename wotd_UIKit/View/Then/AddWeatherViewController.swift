@@ -12,6 +12,8 @@ final class AddWeatherViewController: UIViewController {
     
     private let vm = AddViewModel()
     
+    private var selectedCity: City?
+    
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.text = "Date"
@@ -50,6 +52,8 @@ final class AddWeatherViewController: UIViewController {
         
         let action = UIAction { [weak self] _ in
             self?.textField.text = ""
+            self?.vm.cities = []
+            self?.searchResultTable.reloadData()
         }
         
         button.addAction(action, for: .touchUpInside)
@@ -104,6 +108,11 @@ final class AddWeatherViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vm.cities = []
     }
     
     private func addSubviews() {
@@ -195,6 +204,10 @@ extension AddWeatherViewController: UITableViewDelegate, UITableViewDataSource {
         70
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCity = vm.cities[indexPath.row]
+        print(selectedCity)
+    }
 }
 
 #Preview {
