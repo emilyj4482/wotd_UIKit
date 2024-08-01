@@ -14,17 +14,13 @@ final class AddWeatherViewController: UIViewController {
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
-        
         label.text = "Date"
-        
         return label
     }()
     
     private lazy var cityLabel: UILabel = {
         let label = UILabel()
-        
         label.text = "City"
-        
         return label
     }()
     
@@ -32,7 +28,7 @@ final class AddWeatherViewController: UIViewController {
         let datePicker = UIDatePicker()
         
         datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .automatic
+        datePicker.preferredDatePickerStyle = .compact
         datePicker.tintColor = .accent
         
         return datePicker
@@ -58,17 +54,29 @@ final class AddWeatherViewController: UIViewController {
         
         button.addAction(action, for: .touchUpInside)
         button.setImage(UIImage(systemName: "x.circle.fill"), for: .normal)
-        button.tintColor = .accent
+        button.tintColor = .gray
         button.contentMode = .scaleAspectFit
         button.isHidden = true
         
         return button
     }()
     
+    private lazy var searchResultTable: UITableView = {
+        let tableView = UITableView()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: SearchResultCell.identifier)
+        tableView.backgroundColor = .addSheet
+        
+        return tableView
+    }()
+    
     private lazy var addButton: UIButton = {
         let button = UIButton()
         
         let action = UIAction { [weak self] _ in
+            print(self?.datePicker.date ?? "")
             self?.dismiss(animated: true)
         }
 
@@ -98,9 +106,10 @@ final class AddWeatherViewController: UIViewController {
         layout()
     }
     
-    
     private func addSubviews() {
-        [dateLabel, cityLabel, datePicker, textField, deleteButton, addButton].forEach { view.addSubview($0) }
+        [dateLabel, cityLabel, datePicker, textField, deleteButton, addButton, searchResultTable].forEach { view.addSubview($0) }
+        // navigationBar 영역이 date picker를 가려 touch가 안되는 문제 처리
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func layout() {
@@ -139,6 +148,13 @@ final class AddWeatherViewController: UIViewController {
             $0.width.equalTo(100)
             $0.height.equalTo(50)
         }
+        
+        searchResultTable.snp.makeConstraints {
+            $0.top.equalTo(textField.snp.bottom).offset(10)
+            $0.bottom.equalTo(addButton.snp.top).offset(-5)
+            $0.leading.equalTo(textField.snp.leading)
+            $0.trailing.equalTo(deleteButton.snp.trailing)
+        }
     }
 }
 
@@ -152,6 +168,7 @@ extension AddWeatherViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         // textfield 입력값으로 행정구역명 search
         vm.searchCities(searchText: textField.text ?? "")
+        searchResultTable.reloadData()
         if textField.text?.count == 0 {
             deleteButton.isHidden = true
         } else {
@@ -159,6 +176,27 @@ extension AddWeatherViewController: UITextFieldDelegate {
         }
     }
 }
+
+extension AddWeatherViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        vm.cities.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.identifier, for: indexPath) as? SearchResultCell else { return UITableViewCell() }
+        
+        let city = vm.cities[indexPath.row]
+        cell.bind(city: city)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        70
+    }
+    
+}
+
 #Preview {
-    ThenViewController()
+    AddWeatherViewController()
 }
