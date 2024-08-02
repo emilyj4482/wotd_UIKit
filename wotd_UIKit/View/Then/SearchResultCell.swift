@@ -7,16 +7,21 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class SearchResultCell: UITableViewCell {
     
     static let identifier: String = "SearchResultCell"
     
+    private let vm = AddViewModel.shared
+    
+    private var subscriptions = Set<AnyCancellable>()
+    
     private lazy var citynameLabel: UILabel = {
         let label = UILabel()
         
         label.textColor = .accent
-        label.font = .preferredFont(forTextStyle: .callout)
+        label.font = .systemFont(ofSize: 17)
         label.numberOfLines = 0
         
         return label
@@ -26,6 +31,7 @@ class SearchResultCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         layout()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +52,24 @@ class SearchResultCell: UITableViewCell {
         }
     }
     
-    func bind(city: City) {
+    func setCityName(city: City) {
         citynameLabel.text = city.fullName
     }
+    
+    private func bind() {
+        vm.$isCitySelected
+            .sink { [self] in
+                if $0 == true {
+                    citynameLabel.font = .boldSystemFont(ofSize: 17)
+                } else {
+                    citynameLabel.font = .systemFont(ofSize: 17)
+                }
+            }
+            .store(in: &subscriptions)
+
+    }
+}
+
+#Preview {
+    AddWeatherViewController()
 }

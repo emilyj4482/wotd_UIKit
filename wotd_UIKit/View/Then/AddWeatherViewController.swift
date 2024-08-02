@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class AddWeatherViewController: UIViewController {
     
-    private let vm = AddViewModel()
+    private let vm = AddViewModel.shared
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     private var selectedCity: City?
     
@@ -52,8 +55,7 @@ final class AddWeatherViewController: UIViewController {
         
         let action = UIAction { [weak self] _ in
             self?.textField.text = ""
-            self?.vm.cities = []
-            self?.searchResultTable.reloadData()
+            self?.resetFormat()
         }
         
         button.addAction(action, for: .touchUpInside)
@@ -74,6 +76,16 @@ final class AddWeatherViewController: UIViewController {
         tableView.backgroundColor = .addSheet
         
         return tableView
+    }()
+    
+    private lazy var selectImage: UIImageView = {
+        let imageView = UIImageView()
+            
+        imageView.image = UIImage(systemName: "checkmark.circle.fill")
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        
+        return imageView
     }()
     
     private lazy var addButton: UIButton = {
@@ -108,15 +120,16 @@ final class AddWeatherViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         layout()
+        bind()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        vm.cities = []
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        resetFormat()
     }
     
     private func addSubviews() {
-        [dateLabel, cityLabel, datePicker, textField, deleteButton, addButton, searchResultTable].forEach { view.addSubview($0) }
+        [dateLabel, cityLabel, datePicker, textField, deleteButton, searchResultTable, selectImage, addButton].forEach { view.addSubview($0) }
         // navigationBar 영역이 date picker를 가려 touch가 안되는 문제 처리
         navigationController?.navigationBar.isHidden = true
     }
@@ -162,8 +175,34 @@ final class AddWeatherViewController: UIViewController {
             $0.top.equalTo(textField.snp.bottom).offset(10)
             $0.bottom.equalTo(addButton.snp.top).offset(-5)
             $0.leading.equalTo(textField.snp.leading)
+            $0.trailing.equalTo(textField.snp.trailing)
+        }
+        
+        selectImage.snp.makeConstraints {
+            $0.top.equalTo(searchResultTable.snp.top).offset(25)
+            $0.leading.equalTo(deleteButton.snp.leading)
             $0.trailing.equalTo(deleteButton.snp.trailing)
         }
+    }
+    
+    private func bind() {
+        vm.$isCitySelected
+            .sink { [self] in
+                if $0 == true {
+                    selectImage.isHidden = false
+                    addButton.isEnabled = true
+                } else {
+                    selectImage.isHidden = true
+                    addButton.isEnabled = false
+                }
+            }
+            .store(in: &subscriptions)
+    }
+    
+    private func resetFormat() {
+        vm.cities = []
+        searchResultTable.reloadData()
+        vm.isCitySelected = false
     }
 }
 
@@ -180,6 +219,7 @@ extension AddWeatherViewController: UITextFieldDelegate {
         searchResultTable.reloadData()
         if textField.text?.count == 0 {
             deleteButton.isHidden = true
+            resetFormat()
         } else {
             deleteButton.isHidden = false
         }
@@ -195,7 +235,7 @@ extension AddWeatherViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchResultCell.identifier, for: indexPath) as? SearchResultCell else { return UITableViewCell() }
         
         let city = vm.cities[indexPath.row]
-        cell.bind(city: city)
+        cell.setCityName(city: city)
         
         return cell
     }
@@ -205,8 +245,13 @@ extension AddWeatherViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedCity = vm.cities[indexPath.row]
-        print(selectedCity)
+        vm.isCitySelected.toggle()
+        
+        if vm.isCitySelected == true {
+            selectedCity = vm.cities[indexPath.row]
+        } else {
+            selectedCity = nil
+        }
     }
 }
 

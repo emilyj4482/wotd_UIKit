@@ -11,6 +11,8 @@ import UIKit
 
 final class AddViewModel: ObservableObject {
     
+    static let shared = AddViewModel()
+    
     private let searchManager = SearchManager()
     
     private var subscriptions = Set<AnyCancellable>()
@@ -20,6 +22,8 @@ final class AddViewModel: ObservableObject {
             cities.forEach { print($0.fullName) }
         }
     }
+    
+    @Published var isCitySelected: Bool = false
     
     func searchCities(searchText: String) {
         cities = searchManager.request(resultType: .address, searchText: searchText)
