@@ -33,34 +33,6 @@ final class SearchManager {
         return cities
     }
     
-    private var request = Request.day
-    
-    func searchWeather(date: Date, city: City?) -> AnyPublisher<ThenWeather, Error> {
-        // 1. request params set >> date
-        request.setDate(date: date.dateString)
-        
-        guard let city = city else {
-            print("[SearchManager ERROR] no city selected")
-            return Empty().eraseToAnyPublisher()
-        }
-        
-        // 2. request params set >> coordinates
-        getCoordinate(city: city.fullName) { [weak self] coordinate, error in
-            if error != nil {
-                let x = String(coordinate.longitude)
-                let y = String(coordinate.latitude)
-                self?.request.setCoordinate(x: x, y: y)
-                print(self?.request)
-            }
-        }
-        
-        // 3. get weather info (api network) and return ThenWeather
-        return APIService.requestWeatherInfo(request)
-            .receive(on: DispatchQueue.main)
-            .map { $0.toThenWeather(date: date, city: city.name) }
-            .eraseToAnyPublisher()
-    }
-    
     // city name으로 좌표 검색
     private func getCoordinate(city: String, completionHandler: @escaping (CLLocationCoordinate2D, NSError?) -> Void) {
         let geocoder = CLGeocoder()
@@ -73,5 +45,25 @@ final class SearchManager {
                 completionHandler(kCLLocationCoordinate2DInvalid, error as NSError?)
             }
         }
+    }
+    
+    private var request = Request.day
+    
+    func setParams(date: Date, city: City) {
+        request.setDate(date: date.dateString)
+
+        getCoordinate(city: city.fullName) { [weak self] coordinate, error in
+            let x = String(coordinate.longitude)
+            let y = String(coordinate.latitude)
+            self?.request.setCoordinate(x: x, y: y)
+        }
+    }
+    
+    func fetchWeather(date: Date, city: City) -> AnyPublisher<ThenWeather, Error> {
+        print(request)
+        return APIService.requestWeatherInfo(request)
+            .receive(on: DispatchQueue.main)
+            .map { $0.toThenWeather(date: date, city: city.name) }
+            .eraseToAnyPublisher()
     }
 }

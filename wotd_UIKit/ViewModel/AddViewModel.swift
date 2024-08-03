@@ -29,14 +29,17 @@ final class AddViewModel: ObservableObject {
         cities = searchManager.request(resultType: .address, searchText: searchText)
     }
     
-    func searchWeather(date: Date, city: City?) {
-        searchManager.searchWeather(date: date, city: city)
+    func setParams(date: Date, city: City) {
+        searchManager.setParams(date: date, city: city)
+    }
+    
+    func getWeather(date: Date, city: City) {
+        searchManager.fetchWeather(date: date, city: city)
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
             } receiveValue: { weather in
                 ThenViewModel.shared.weathers.append(weather)
-                print(weather)
             }
             .store(in: &subscriptions)
     }

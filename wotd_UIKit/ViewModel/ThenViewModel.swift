@@ -17,7 +17,11 @@ final class ThenViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
-    @Published var weathers: [ThenWeather] = []
+    @Published var weathers: [ThenWeather] = [] {
+        didSet {
+            print(weathers)
+        }
+    }
     
     @Published var todaysWeather: ThenWeather? {
         didSet {

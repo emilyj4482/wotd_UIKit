@@ -83,7 +83,6 @@ final class AddWeatherViewController: UIViewController {
             
         imageView.image = UIImage(systemName: "checkmark.circle.fill")
         imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = true
         
         return imageView
     }()
@@ -92,7 +91,11 @@ final class AddWeatherViewController: UIViewController {
         let button = UIButton()
         
         let action = UIAction { [weak self] _ in
-            print(self?.datePicker.date ?? "")
+            guard let date = self?.datePicker.date,
+                  let city = self?.selectedCity
+            else { return }
+            
+            self?.vm.getWeather(date: date, city: city)
             self?.dismiss(animated: true)
         }
 
@@ -103,7 +106,6 @@ final class AddWeatherViewController: UIViewController {
         button.configuration?.baseBackgroundColor = .accent
         
         button.addAction(action, for: .touchUpInside)
-        // button.isEnabled = false
         
         return button
     }()
@@ -248,7 +250,9 @@ extension AddWeatherViewController: UITableViewDelegate, UITableViewDataSource {
         vm.isCitySelected.toggle()
         
         if vm.isCitySelected == true {
-            selectedCity = vm.cities[indexPath.row]
+            let city = vm.cities[indexPath.row]
+            selectedCity = city
+            vm.setParams(date: datePicker.date, city: city)
         } else {
             selectedCity = nil
         }
