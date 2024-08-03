@@ -46,7 +46,3 @@ final class AddViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 }
-
-extension Notification {
-    static let tableViewReload = Notification.Name("tableViewReload")
-}

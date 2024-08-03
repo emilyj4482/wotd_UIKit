@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 protocol ThenViewDelegate {
     func pushComparisionViewController(with weather: ThenWeather)
@@ -21,7 +22,7 @@ final class ThenViewModel: ObservableObject {
     
     @Published var weathers: [ThenWeather] = [] {
         didSet {
-            print(weathers)
+            saveData()
         }
     }
     
@@ -32,6 +33,7 @@ final class ThenViewModel: ObservableObject {
     }
     
     init() {
+        getData()
         bind()
     }
     
@@ -48,5 +50,21 @@ final class ThenViewModel: ObservableObject {
                 self?.todaysWeather = thenWeather
             }
             .store(in: &subscriptions)
+    }
+}
+
+extension ThenViewModel {
+    func saveData() {
+        if let encodedData = try? JSONEncoder().encode(weathers) {
+            UserDefaults.standard.set(encodedData, forKey: AppStorageKey.weathers)
+        }
+    }
+    
+    func getData() {
+        guard
+            let data = UserDefaults.standard.data(forKey: AppStorageKey.weathers),
+            let savedData = try? JSONDecoder().decode([ThenWeather].self, from: data)
+        else { return }
+        self.weathers = savedData
     }
 }

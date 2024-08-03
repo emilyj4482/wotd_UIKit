@@ -1,5 +1,5 @@
 //
-//  Extension.swift
+//  +Double.swift
 //  wotd_UIKit
 //
 //  Created by EMILY on 21/07/2024.
@@ -22,9 +22,4 @@ extension Double {
             return "\(String(format: "%.1f", self))°"
         }
     }
-}
-
-extension Int {
-    // n°
-    var toString: String { "\(self)°" }
 }
