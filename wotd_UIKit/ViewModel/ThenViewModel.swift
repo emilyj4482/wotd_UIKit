@@ -17,6 +17,8 @@ final class ThenViewModel: ObservableObject {
     
     private var subscriptions = Set<AnyCancellable>()
     
+    let notiPublisher = NotificationCenter.default.publisher(for: Notification.tableViewReload)
+    
     @Published var weathers: [ThenWeather] = [] {
         didSet {
             print(weathers)
@@ -31,7 +33,6 @@ final class ThenViewModel: ObservableObject {
     
     init() {
         bind()
-        weathers.append(ThenWeather(date: Date() - 2592000, city: "London", min: 7, max: 16, morning: 9, afternoon: 16, evening: 11, night: 7))
     }
     
     func bind() {

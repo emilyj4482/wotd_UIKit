@@ -40,7 +40,13 @@ final class AddViewModel: ObservableObject {
                 
             } receiveValue: { weather in
                 ThenViewModel.shared.weathers.append(weather)
+                // WeatherListView tableview reload trigger
+                NotificationCenter.default.post(name: Notification.tableViewReload, object: nil)
             }
             .store(in: &subscriptions)
     }
+}
+
+extension Notification {
+    static let tableViewReload = Notification.Name("tableViewReload")
 }

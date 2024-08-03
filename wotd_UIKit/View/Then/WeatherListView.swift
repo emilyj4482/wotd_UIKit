@@ -7,12 +7,15 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class WeatherListView: UIView {
     
     private var vm = ThenViewModel.shared
     
     var delegate: ThenViewDelegate?
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     private var titleLabel: UILabel = {
         let label: UILabel = UILabel()
@@ -41,6 +44,7 @@ final class WeatherListView: UIView {
         
         addSubview()
         layout()
+        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -64,6 +68,14 @@ final class WeatherListView: UIView {
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    private func bind() {
+        vm.notiPublisher
+            .sink { [weak self] _ in
+                self?.tableView.reloadData()
+            }
+            .store(in: &subscriptions)
     }
     
     private func pushComparisionViewController(with weather: ThenWeather) {
