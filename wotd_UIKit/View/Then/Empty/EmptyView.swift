@@ -10,7 +10,7 @@ import SnapKit
 
 final class EmptyView: UIView {
     private lazy var imageView: UIImageView = {
-        let imageView: UIImageView = UIImageView()
+        let imageView = UIImageView()
         
         imageView.image = UIImage(systemName: "cloud.sun.fill")?.withRenderingMode(.alwaysOriginal)
         imageView.contentMode = .scaleAspectFit
@@ -19,7 +19,7 @@ final class EmptyView: UIView {
     }()
     
     private lazy var descriptionLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "Add a weather of the specific day and city you want to compare to today's one."
         label.numberOfLines = 0

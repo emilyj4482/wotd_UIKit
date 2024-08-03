@@ -13,7 +13,7 @@ class WeatherCell: UITableViewCell {
     static let identifier: String = "WeatherCell"
 
     private lazy var dateLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.textColor = .accent
         label.font = .boldSystemFont(ofSize: 22)
@@ -22,7 +22,7 @@ class WeatherCell: UITableViewCell {
     }()
     
     private lazy var citynameLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.textColor = .accent
         label.font = .preferredFont(forTextStyle: .title1)
@@ -31,7 +31,7 @@ class WeatherCell: UITableViewCell {
     }()
     
     private lazy var arrowImage: UIImageView = {
-        let imageView: UIImageView = UIImageView()
+        let imageView = UIImageView()
         
         imageView.image = UIImage(systemName: "chevron.right")
         imageView.tintColor = .accent

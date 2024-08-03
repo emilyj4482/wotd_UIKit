@@ -20,7 +20,7 @@ class ThenViewController: UIViewController {
     private lazy var weatherListView = WeatherListView()
     
     private lazy var addButton: UIButton = {
-        let button: UIButton = UIButton()
+        let button = UIButton()
         
         let action = UIAction { [weak self] _ in
             self?.presentAddWeatherViewController()

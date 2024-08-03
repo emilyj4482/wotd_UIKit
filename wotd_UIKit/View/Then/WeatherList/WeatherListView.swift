@@ -18,7 +18,7 @@ final class WeatherListView: UIView {
     private var subscriptions = Set<AnyCancellable>()
     
     private var titleLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "Weathers to compare"
         label.font = .boldSystemFont(ofSize: 32)
@@ -28,7 +28,7 @@ final class WeatherListView: UIView {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView: UITableView = UITableView()
+        let tableView = UITableView()
         
         tableView.backgroundColor = .descent
         tableView.register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)

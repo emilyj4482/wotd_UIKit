@@ -15,13 +15,13 @@ final class NowViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     private var containerView: UIView = {
-        let view: UIView = UIView()
+        let view = UIView()
         
         return view
     }()
     
     private var locationHStack: UIStackView = {
-        let hStack: UIStackView = UIStackView()
+        let hStack = UIStackView()
         
         hStack.axis = .horizontal
         hStack.spacing = 8
@@ -31,7 +31,7 @@ final class NowViewController: UIViewController {
     }()
     
     private var locationImage: UIImageView = {
-        let imageView: UIImageView = UIImageView()
+        let imageView = UIImageView()
         
         imageView.image = UIImage(systemName: "location.fill")
         imageView.tintColor = .accent
@@ -40,7 +40,7 @@ final class NowViewController: UIViewController {
     }()
     
     private var locationText: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "-"
         label.font = .systemFont(ofSize: 30, weight: .bold)
@@ -50,7 +50,7 @@ final class NowViewController: UIViewController {
     }()
     
     private var weatherRectVStack: UIStackView = {
-        let vStack: UIStackView = UIStackView()
+        let vStack = UIStackView()
         
         vStack.axis = .vertical
         vStack.spacing = 13
