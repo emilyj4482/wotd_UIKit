@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+import SwiftUI
 
 protocol ThenViewDelegate {
     func pushComparisionViewController(with weather: ThenWeather)
@@ -14,14 +16,55 @@ protocol ThenViewDelegate {
 final class ThenViewModel: ObservableObject {
     static let shared = ThenViewModel()
     
-    let isEmpty: Bool = false
+    private var subscriptions = Set<AnyCancellable>()
     
-    @Published var weathers: [ThenWeather] = []
+    let notiPublisher = NotificationCenter.default.publisher(for: Notification.tableViewReload)
     
-    @Published var nowWeather: ThenWeather
+    @Published var weathers: [ThenWeather] = [] {
+        didSet {
+            saveData()
+        }
+    }
     
-    init(nowWeather: ThenWeather = ThenWeather(date: Date(), city: "Suwon-si", min: 10, max: 23, morning: 10, afternoon: 23, evening: 17, night: 11)) {
-        self.nowWeather = nowWeather
-        weathers.append(ThenWeather(date: Date() - 2592000, city: "London", min: 7, max: 16, morning: 9, afternoon: 16, evening: 11, night: 7))
+    @Published var todaysWeather: ThenWeather? {
+        didSet {
+            print(todaysWeather ?? "[todaysWeather] nil")
+        }
+    }
+    
+    init() {
+        getData()
+        bind()
+    }
+    
+    func bind() {
+        let vm = NowViewModel.shared
+        
+        vm.location
+            .combineLatest(vm.weatherInfo)
+            .receive(on: DispatchQueue.main)
+            .map { location, weatherInfo in
+                return weatherInfo.toThenWeather(date: Date(), city: location)
+            }
+            .sink { [weak self] thenWeather in
+                self?.todaysWeather = thenWeather
+            }
+            .store(in: &subscriptions)
+    }
+}
+
+extension ThenViewModel {
+    func saveData() {
+        if let encodedData = try? JSONEncoder().encode(weathers) {
+            UserDefaults.standard.set(encodedData, forKey: AppStorageKey.weathers)
+        }
+    }
+    
+    func getData() {
+        guard
+            let data = UserDefaults.standard.data(forKey: AppStorageKey.weathers),
+            let savedData = try? JSONDecoder().decode([ThenWeather].self, from: data)
+        else { return }
+        self.weathers = savedData
     }
 }

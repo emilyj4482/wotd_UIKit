@@ -23,3 +23,7 @@ final class TabBarViewController: UITabBarController {
         self.viewControllers = tabBarViewControllers
     }
 }
+
+#Preview {
+    TabBarViewController()
+}

@@ -30,3 +30,9 @@ struct Temperature: Decodable {
     let afternoon: Double   // 12:00
     let evening: Double     // 18:00
 }
+
+extension WeatherInfo {
+    func toThenWeather(date: Date, city: String) -> ThenWeather {
+        .init(date: date, city: city, min: temperature.min.toInt, max: temperature.max.toInt, morning: temperature.morning.toInt, afternoon: temperature.afternoon.toInt, evening: temperature.evening.toInt, night: temperature.night.toInt)
+    }
+}

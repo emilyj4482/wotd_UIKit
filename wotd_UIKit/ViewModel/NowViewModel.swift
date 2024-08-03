@@ -16,6 +16,8 @@ final class NowViewModel: ObservableObject {
     
     let location = PassthroughSubject<String, Never>()
     
+    let weatherInfo = PassthroughSubject<WeatherInfo, Never>()
+    
     let today = CurrentValueSubject<ThreeDays, Never>(ThreeDays())
     let yesterday = CurrentValueSubject<ThreeDays, Never>(ThreeDays())
     let tomorrow = CurrentValueSubject<ThreeDays, Never>(ThreeDays())
@@ -57,6 +59,8 @@ final class NowViewModel: ObservableObject {
             .sink { completion in
                 print("[COMPLETION] \(completion)")
             } receiveValue: { [weak self] description, info in
+                // then view model에 전송하기 위에 publisher에 send
+                self?.weatherInfo.send(info)
                 let moment = description.weather[0]
                 let day = info.temperature
                 self?.yesterday.value.weather = NowWeather(isDaytime: isDaytime, nowTemp: moment.temp, maxTemp: day.max.toInt, minTemp: day.min.toInt, code: moment.description[0].code)

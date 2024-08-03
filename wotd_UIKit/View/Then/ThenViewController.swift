@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 class ThenViewController: UIViewController {
     
     private var vm = ThenViewModel.shared
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     private lazy var emptyView = EmptyView()
     
@@ -33,11 +36,8 @@ class ThenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         weatherListView.delegate = self
-        
-        addSubviews(vm.isEmpty ? emptyView : weatherListView)
-        layout(vm.isEmpty ? emptyView : weatherListView)
+        bind()
     }
     
     private func addSubviews(_ subview: UIView) {
@@ -58,6 +58,20 @@ class ThenViewController: UIViewController {
         addButton.imageView?.snp.makeConstraints {
             $0.width.height.equalTo(65)
         }
+    }
+    
+    private func bind() {
+        vm.$weathers
+            .sink { [self] weathers in
+                if weathers.isEmpty {
+                    addSubviews(emptyView)
+                    layout(emptyView)
+                } else {
+                    addSubviews(weatherListView)
+                    layout(weatherListView)
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     func presentAddWeatherViewController() {
