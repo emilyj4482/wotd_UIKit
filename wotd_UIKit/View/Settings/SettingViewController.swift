@@ -15,15 +15,26 @@ class SettingViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.backgroundColor = .accent
+        tableView.backgroundColor = .descent
+        tableView.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         
         return tableView
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBar()
         addSubviews()
         layout()
+    }
+    
+    private func setNavigationBar() {
+        navigationItem.title = "Settings"
+        navigationItem.titleView?.tintColor = .accent
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.backgroundColor = .descent
+        navigationController?.navigationBar.tintColor = .accent
     }
     
     private func addSubviews() {
@@ -51,7 +62,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UITableViewCell() }
+        
+        return cell
     }
     
     
