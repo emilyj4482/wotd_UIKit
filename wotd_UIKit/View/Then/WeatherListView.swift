@@ -104,7 +104,21 @@ extension WeatherListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let weather = vm.weathers[indexPath.row]
         pushComparisionViewController(with: weather)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] _, _, completion in
+            let weather = vm.weathers[indexPath.row]
+            // action sheet 호출
+            delegate?.showActionSheet(weather, index: indexPath.row)
+            completion(true)
+        }
         
+        delete.image = UIImage(systemName: "trash")
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipe
     }
 }
 

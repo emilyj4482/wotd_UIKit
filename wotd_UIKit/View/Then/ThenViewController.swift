@@ -84,6 +84,18 @@ extension ThenViewController: ThenViewDelegate {
     func pushComparisionViewController(with weather: ThenWeather) {
         navigationController?.pushViewController(ComparisionViewController(weather: weather), animated: true)
     }
+    
+    func showActionSheet(_ weather: ThenWeather, index: Int) {
+        let alert = UIAlertController(title: "Delete this weather?", message: "", preferredStyle: .actionSheet)
+        let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
+            vm.deleteWeather(index)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true)
+    }
 }
 
 #Preview {
