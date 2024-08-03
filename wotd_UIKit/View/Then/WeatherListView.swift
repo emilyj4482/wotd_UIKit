@@ -114,7 +114,8 @@ extension WeatherListView: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
         
-        delete.image = UIImage(systemName: "trash")
+        delete.image = UIImage(systemName: "trash")?.withTintColor(.descent, renderingMode: .alwaysOriginal)
+        delete.backgroundColor = .accent
         
         let swipe = UISwipeActionsConfiguration(actions: [delete])
         

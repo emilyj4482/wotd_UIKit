@@ -86,8 +86,8 @@ extension ThenViewController: ThenViewDelegate {
     }
     
     func showActionSheet(_ weather: ThenWeather, index: Int) {
-        let alert = UIAlertController(title: "Delete this weather?", message: "", preferredStyle: .actionSheet)
-        let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { [unowned self] _ in
+        let alert = UIAlertController(title: "", message: "Delete this weather?", preferredStyle: .actionSheet)
+        let deleteButton = UIAlertAction(title: "Delete", style: .default) { [unowned self] _ in
             vm.deleteWeather(index)
         }
         let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
