@@ -46,6 +46,7 @@
 		A1BCA3A62C5B422E004857EC /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BCA3A52C5B422E004857EC /* SearchManager.swift */; };
 		A1BCA3A82C5B4297004857EC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BCA3A72C5B4297004857EC /* City.swift */; };
 		A1D6D3682C5BFCAB002FD643 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6D3672C5BFCAB002FD643 /* SearchResultCell.swift */; };
+		A1E126862C5FD51200DA4659 /* SettingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E126852C5FD51200DA4659 /* SettingHeader.swift */; };
 		A1F4E25C2C58F8D000832B53 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4E25B2C58F8D000832B53 /* WeatherCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		A1BCA3A52C5B422E004857EC /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		A1BCA3A72C5B4297004857EC /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		A1D6D3672C5BFCAB002FD643 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		A1E126852C5FD51200DA4659 /* SettingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeader.swift; sourceTree = "<group>"; };
 		A1F4E25B2C58F8D000832B53 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -267,6 +269,7 @@
 				A110C73B2C4AC6A1004F57AF /* SettingViewController.swift */,
 				A11A7E2B2C5E907C005339EE /* SettingCell.swift */,
 				A14933182C5FAB1800982654 /* SettingSection.swift */,
+				A1E126852C5FD51200DA4659 /* SettingHeader.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				A110C7222C4AC446004F57AF /* AppDelegate.swift in Sources */,
 				A1A9AEB52C4CDF0000DC5EC6 /* ThreeDays.swift in Sources */,
 				A108C1AC2C4FD1B400EF0B0C /* WeatherDescription.swift in Sources */,
+				A1E126862C5FD51200DA4659 /* SettingHeader.swift in Sources */,
 				A1ACA15C2C4C1ED3008BAA51 /* WeatherRect.swift in Sources */,
 				A14933192C5FAB1800982654 /* SettingSection.swift in Sources */,
 				A12BBF6D2C58ADED00A5626A /* WeatherListView.swift in Sources */,

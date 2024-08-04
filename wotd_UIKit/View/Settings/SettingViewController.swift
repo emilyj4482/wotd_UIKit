@@ -17,9 +17,7 @@ class SettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .descent
         tableView.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
-
-        tableView.sectionIndexBackgroundColor = .descent
-        
+        tableView.register(SettingHeader.self, forHeaderFooterViewReuseIdentifier: SettingHeader.identifier)
         
         return tableView
     }()
@@ -67,13 +65,20 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .setting : return 1
         }
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let section = SettingSection(rawValue: section) else { return "" }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SettingHeader.identifier) as? SettingHeader,
+        let section = SettingSection(rawValue: section)
+        else { return UIView() }
         
         switch section {
-        case .info: return "info".uppercased()
-        case .setting : return "setting".uppercased()
+        case .info:
+            header.format("info")
+            return header
+        case .setting:
+            header.format("setting")
+            return header
         }
     }
     
@@ -82,8 +87,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
 
 #Preview {
