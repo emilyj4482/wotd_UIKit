@@ -30,11 +30,8 @@ class SettingViewController: UIViewController {
     
     private func setNavigationBar() {
         navigationItem.title = "Settings"
-        navigationItem.titleView?.tintColor = .accent
-        navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .descent
-        navigationController?.navigationBar.tintColor = .accent
+        navigationController?.navigationBar.barTintColor = .descent
     }
     
     private func addSubviews() {
