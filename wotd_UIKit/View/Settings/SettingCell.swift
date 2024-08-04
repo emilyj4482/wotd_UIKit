@@ -14,6 +14,9 @@ class SettingCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         
+        label.textColor = .accent
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        
         return label
     }()
     
@@ -31,7 +34,6 @@ class SettingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubviews()
         layout()
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -46,10 +48,11 @@ class SettingCell: UITableViewCell {
         backgroundColor = .moreAccent
         selectionStyle = .none
         
+        
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(8)
-            $0.trailing.equalToSuperview().offset(-8)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalTo(arrowImage.snp.leading).offset(-20)
         }
         
         arrowImage.snp.makeConstraints {
@@ -59,7 +62,11 @@ class SettingCell: UITableViewCell {
         }
     }
     
-    func bind() {
-        titleLabel.text = "Appearance"
+    func bind(_ title: String) {
+        titleLabel.text = title
     }
+}
+
+#Preview {
+    SettingViewController()
 }

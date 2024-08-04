@@ -30,7 +30,7 @@ class SettingHeader: UITableViewHeaderFooterView {
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().offset(10)
+            $0.leading.equalToSuperview().offset(30)
         }
     }
 }

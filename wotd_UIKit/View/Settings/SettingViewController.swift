@@ -11,7 +11,7 @@ import SnapKit
 class SettingViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -27,6 +27,7 @@ class SettingViewController: UIViewController {
         setNavigationBar()
         addSubviews()
         layout()
+        
     }
     
     private func setNavigationBar() {
@@ -45,9 +46,9 @@ class SettingViewController: UIViewController {
         view.backgroundColor = .descent
         
         tableView.snp.makeConstraints {
-            $0.top.bottom.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            //$0.leading.equalToSuperview().offset(20)
+            //$0.trailing.equalToSuperview().offset(-20)
         }
     }
 }
@@ -75,15 +76,29 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .info:
             header.format("info")
-            return header
         case .setting:
             header.format("setting")
-            return header
         }
+        
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        30
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell else { return UITableViewCell() }
+        guard
+            let section = SettingSection(rawValue: indexPath.section),
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell
+        else { return UITableViewCell() }
+        
+        switch section {
+        case .info:
+            cell.bind(section.cellTitle[indexPath.row])
+        case .setting:
+            cell.bind(section.cellTitle[indexPath.row])
+        }
         
         return cell
     }
