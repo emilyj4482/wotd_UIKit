@@ -32,6 +32,8 @@ class SettingViewController: UIViewController {
         navigationItem.title = "Settings"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .descent
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.accent]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.accent]
     }
     
     private func addSubviews() {
