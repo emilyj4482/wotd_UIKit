@@ -43,7 +43,7 @@ class SettingCell: UITableViewCell {
     }
     
     private func layout() {
-        backgroundColor = .descent
+        backgroundColor = .moreAccent
         selectionStyle = .none
         
         titleLabel.snp.makeConstraints {
