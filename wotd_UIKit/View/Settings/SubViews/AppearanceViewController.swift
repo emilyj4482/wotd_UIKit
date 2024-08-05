@@ -26,6 +26,7 @@ class AppearanceViewController: UIViewController {
         let modeLabel = UILabel()
         
         modeLabel.text = "\(mode) Mode"
+        modeLabel.textColor = .accent
         
         [emojiLabel, modeLabel].forEach { stackView.addArrangedSubview($0) }
         

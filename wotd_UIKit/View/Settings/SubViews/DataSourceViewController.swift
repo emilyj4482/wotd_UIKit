@@ -25,6 +25,7 @@ class DataSourceViewController: UIViewController {
         
         label.text = "This app's weather data comes from:"
         label.font = .preferredFont(forTextStyle: .body)
+        label.textColor = .accent
         
         return label
     }()
@@ -34,17 +35,19 @@ class DataSourceViewController: UIViewController {
         
         label.text = "OpenWeather API"
         label.font = .preferredFont(forTextStyle: .title1)
+        label.textColor = .accent
         
         return label
     }()
     
-    private lazy var urlLabel: UILabel = {
-        let label = UILabel()
+    private lazy var urlButton: UIButton = {
+        let button = UIButton()
+
+        button.setTitle("openweathermap.org", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.secondaryLabel, for: .highlighted)
         
-        label.text = "openweathermap.org"
-        label.font = .preferredFont(forTextStyle: .callout)
-        
-        return label
+        return button
     }()
 
     override func viewDidLoad() {
@@ -55,13 +58,11 @@ class DataSourceViewController: UIViewController {
     
     private func addSubviews() {
         view.addSubview(labelStackView)
-        [firstLabel, secondLabel, urlLabel].forEach { labelStackView.addArrangedSubview($0) }
+        [firstLabel, secondLabel, urlButton].forEach { labelStackView.addArrangedSubview($0) }
     }
     
     private func layout() {
         view.backgroundColor = .descent
-        
-        [firstLabel, secondLabel, urlLabel].forEach { $0.textColor = .accent }
         
         labelStackView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
