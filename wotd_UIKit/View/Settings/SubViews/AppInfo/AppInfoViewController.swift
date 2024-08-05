@@ -1,14 +1,13 @@
 //
-//  SettingViewController.swift
+//  AppInfoViewController.swift
 //  wotd_UIKit
 //
-//  Created by EMILY on 20/07/2024.
+//  Created by EMILY on 05/08/2024.
 //
 
 import UIKit
-import SnapKit
 
-class SettingViewController: UIViewController {
+class AppInfoViewController: UIViewController {
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -17,8 +16,8 @@ class SettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .descent
         
-        tableView.register(SettingCell.self, forCellReuseIdentifier: SettingCell.identifier)
         tableView.register(CommonHeader.self, forHeaderFooterViewReuseIdentifier: CommonHeader.identifier)
+        tableView.register(AppInfoCell.self, forCellReuseIdentifier: AppInfoCell.identifier)
         
         return tableView
     }()
@@ -31,7 +30,7 @@ class SettingViewController: UIViewController {
     }
     
     private func setNavigationBar() {
-        navigationItem.title = "Settings"
+        navigationItem.title = "wotd"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barTintColor = .descent
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.accent]
@@ -51,20 +50,20 @@ class SettingViewController: UIViewController {
     }
 }
 
-extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+extension AppInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        SettingSection.allCases.count
+        AppInfoSection.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = SettingSection(rawValue: section) else { return 0 }
+        guard let section = AppInfoSection(rawValue: section) else { return 0 }
         
-        return section.cellTitles.count
+        return section.celTitles.count
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard
-            let section = SettingSection(rawValue: section),
+            let section = AppInfoSection(rawValue: section),
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CommonHeader.identifier) as? CommonHeader
         else { return UIView() }
         
@@ -79,40 +78,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let section = SettingSection(rawValue: indexPath.section),
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell
+            let section = AppInfoSection(rawValue: indexPath.section),
+            let cell = tableView.dequeueReusableCell(withIdentifier: AppInfoCell.identifier, for: indexPath) as? AppInfoCell
         else { return UITableViewCell() }
-        
-        if section == .info && indexPath.row == 0 {
-            cell.firstCellLayout()
-        } else {
-            cell.normalCellLayout()
-        }
-        
-        cell.bind(section.cellTitles[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            return 65
-        } else {
-            return 45
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let section = SettingSection(rawValue: indexPath.section) else { return }
-        
-        if section == .info && indexPath.row == 0 {
-            return
-        } else {
-            navigationController?.pushViewController(section.viewControllers[indexPath.row], animated: true)
-        }
+        45
     }
 }
 
 #Preview {
-    SettingViewController()
+    AppInfoViewController()
 }

@@ -1,5 +1,5 @@
 //
-//  SettingHeader.swift
+//  CommonHeader.swift
 //  wotd_UIKit
 //
 //  Created by EMILY on 05/08/2024.
@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class SettingHeader: UITableViewHeaderFooterView {
-    static let identifier: String = "SettingHeader"
+class CommonHeader: UITableViewHeaderFooterView {
+    static let identifier: String = "CommonHeader"
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
