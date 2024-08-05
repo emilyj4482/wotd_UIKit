@@ -27,7 +27,6 @@ class SettingViewController: UIViewController {
         setNavigationBar()
         addSubviews()
         layout()
-        
     }
     
     private func setNavigationBar() {
@@ -59,10 +58,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = SettingSection(rawValue: section) else { return 0 }
         
-        switch section {
-        case .info: return 3
-        case .settings : return 1
-        }
+        return section.cellTitles.count
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -71,12 +67,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let section = SettingSection(rawValue: section)
         else { return UIView() }
         
-        switch section {
-        case .info:
-            header.format("info")
-        case .settings:
-            header.format("settings")
-        }
+        header.format(section.sectionTitle)
         
         return header
     }
@@ -91,18 +82,13 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingCell.identifier, for: indexPath) as? SettingCell
         else { return UITableViewCell() }
         
-        switch section {
-        case .info:
-            if indexPath.row == 0 {
-                cell.firstCellLayout()
-            } else {
-                cell.normalCellLayout()
-            }
-            cell.bind(section.cellTitle[indexPath.row])
-        case .settings:
+        if section == .info && indexPath.row == 0 {
+            cell.firstCellLayout()
+        } else {
             cell.normalCellLayout()
-            cell.bind(section.cellTitle[indexPath.row])
         }
+        
+        cell.bind(section.cellTitles[indexPath.row])
         
         return cell
     }

@@ -11,7 +11,14 @@ enum SettingSection: Int, CaseIterable {
     case info
     case settings
     
-    var cellTitle: [String] {
+    var sectionTitle: String {
+        switch self {
+        case .info: "info"
+        case .settings: "settings"
+        }
+    }
+    
+    var cellTitles: [String] {
         switch self {
         case .info: ["Version", "Data Source", "About this App"]
         case .settings: ["Appearance"]

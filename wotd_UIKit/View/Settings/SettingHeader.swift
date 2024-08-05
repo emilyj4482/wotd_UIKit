@@ -34,7 +34,3 @@ class SettingHeader: UITableViewHeaderFooterView {
         }
     }
 }
-
-#Preview {
-    SettingViewController()
-}

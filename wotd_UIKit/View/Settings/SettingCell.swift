@@ -110,7 +110,3 @@ class SettingCell: UITableViewCell {
         }
     }
 }
-
-#Preview {
-    SettingViewController()
-}
