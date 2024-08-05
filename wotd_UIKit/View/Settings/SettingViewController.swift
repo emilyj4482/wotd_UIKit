@@ -63,8 +63,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SettingHeader.identifier) as? SettingHeader,
-        let section = SettingSection(rawValue: section)
+            let section = SettingSection(rawValue: section),
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SettingHeader.identifier) as? SettingHeader
         else { return UIView() }
         
         header.format(section.sectionTitle)

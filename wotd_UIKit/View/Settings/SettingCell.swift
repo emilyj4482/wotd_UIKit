@@ -64,14 +64,6 @@ class SettingCell: UITableViewCell {
     private func commonLayout() {
         backgroundColor = .moreAccent
         selectionStyle = .none
-        
-        addSubview(arrowImage)
-        
-        arrowImage.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.width.height.equalTo(15)
-        }
     }
     
     func bind(_ title: String) {
@@ -87,7 +79,7 @@ class SettingCell: UITableViewCell {
         labelStackView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(offset)
-            $0.trailing.equalTo(arrowImage.snp.leading).offset(-offset)
+            $0.trailing.equalToSuperview().offset(-offset)
         }
         
         titleLabel.snp.makeConstraints {
@@ -101,12 +93,18 @@ class SettingCell: UITableViewCell {
     }
     
     func normalCellLayout() {
-        addSubview(titleLabel)
+        [titleLabel, arrowImage].forEach { addSubview($0) }
         
         titleLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(offset)
             $0.trailing.equalTo(arrowImage.snp.leading).offset(-offset)
+        }
+        
+        arrowImage.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.width.height.equalTo(15)
         }
     }
 }
