@@ -75,7 +75,9 @@ class DataSourceViewController: UIViewController {
     }
     
     private func presentWebView() {
-        let vc = UINavigationController(rootViewController: WebViewController())
+        let root = WebViewController()
+        root.url = "https://openweathermap.org"
+        let vc = UINavigationController(rootViewController: root)
         present(vc, animated: true)
     }
 }

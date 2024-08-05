@@ -58,7 +58,7 @@ extension AppInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let section = AppInfoSection(rawValue: section) else { return 0 }
         
-        return section.celTitles.count
+        return section.cellTitles.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -82,11 +82,32 @@ extension AppInfoViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: AppInfoCell.identifier, for: indexPath) as? AppInfoCell
         else { return UITableViewCell() }
         
+        switch section {
+        case .app:
+            cell.appSectionLayout()
+            cell.bindTitle(section.cellTitles[indexPath.row])
+        case .developer:
+            cell.devSectionLayout()
+            cell.bindImage(section.icons[indexPath.row])
+            
+            if indexPath.row == 2 {
+                cell.githubCellLayout()
+                cell.bindButtonTitle(section.cellTitles[indexPath.row])
+            } else {
+                cell.devCellLayout()
+                cell.bindTitle(section.cellTitles[indexPath.row])
+            }
+        }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        45
+        if indexPath.section == 0 {
+            170
+        } else {
+            45
+        }
     }
 }
 

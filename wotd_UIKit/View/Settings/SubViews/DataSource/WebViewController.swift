@@ -10,6 +10,8 @@ import WebKit
 
 class WebViewController: UIViewController {
     
+    var url: String = ""
+    
     private lazy var webView = WKWebView()
     
     private lazy var closeButton: UIBarButtonItem = {
@@ -29,12 +31,12 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadWebView()
+        loadWebView(to: url)
         setup()
     }
     
-    private func loadWebView() {
-        guard let url = URL(string: "https://openweathermap.org") else { return }
+    private func loadWebView(to url: String) {
+        guard let url = URL(string: url) else { return }
         webView.load(URLRequest(url: url))
     }
     
@@ -47,8 +49,4 @@ class WebViewController: UIViewController {
     @objc private func closeButtonTapped(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
-}
-
-#Preview {
-    WebViewController()
 }
