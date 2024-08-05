@@ -100,6 +100,18 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             return 45
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let section = SettingSection(rawValue: indexPath.section) else { return }
+        
+        if section == .info && indexPath.row == 0 {
+            return
+        } else {
+            navigationController?.pushViewController(section.viewControllers[indexPath.row], animated: true)
+        }
+        
+
+    }
 }
 
 #Preview {

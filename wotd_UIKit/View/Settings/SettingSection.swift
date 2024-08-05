@@ -5,7 +5,7 @@
 //  Created by EMILY on 04/08/2024.
 //
 
-import Foundation
+import UIKit
 
 enum SettingSection: Int, CaseIterable {
     case info
@@ -22,6 +22,13 @@ enum SettingSection: Int, CaseIterable {
         switch self {
         case .info: ["Version", "Data Source", "About this App"]
         case .settings: ["Appearance"]
+        }
+    }
+    
+    var viewControllers: [UIViewController] {
+        switch self {
+        case .info: [UIViewController(), DataSourceViewController(), AppInfoViewController()]
+        case .settings: [AppearanceViewController()]
         }
     }
 }
