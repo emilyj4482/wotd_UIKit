@@ -42,10 +42,15 @@ class DataSourceViewController: UIViewController {
     
     private lazy var urlButton: UIButton = {
         let button = UIButton()
+        
+        let action = UIAction { [weak self] _ in
+            self?.presentWebView()
+        }
 
         button.setTitle("openweathermap.org", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.setTitleColor(.secondaryLabel, for: .highlighted)
+        button.addAction(action, for: .touchUpInside)
         
         return button
     }()
@@ -67,6 +72,11 @@ class DataSourceViewController: UIViewController {
         labelStackView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
         }
+    }
+    
+    private func presentWebView() {
+        let vc = UINavigationController(rootViewController: WebViewController())
+        present(vc, animated: true)
     }
 }
 
