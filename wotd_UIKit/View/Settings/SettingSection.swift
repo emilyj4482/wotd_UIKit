@@ -9,12 +9,12 @@ import Foundation
 
 enum SettingSection: Int, CaseIterable {
     case info
-    case setting
+    case settings
     
     var cellTitle: [String] {
         switch self {
         case .info: ["Version", "Data Source", "About this App"]
-        case .setting: ["Appearance"]
+        case .settings: ["Appearance"]
         }
     }
 }

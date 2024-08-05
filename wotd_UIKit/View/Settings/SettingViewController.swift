@@ -47,8 +47,6 @@ class SettingViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            //$0.leading.equalToSuperview().offset(20)
-            //$0.trailing.equalToSuperview().offset(-20)
         }
     }
 }
@@ -63,7 +61,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case .info: return 3
-        case .setting : return 1
+        case .settings : return 1
         }
     }
 
@@ -76,8 +74,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case .info:
             header.format("info")
-        case .setting:
-            header.format("setting")
+        case .settings:
+            header.format("settings")
         }
         
         return header
@@ -95,12 +93,26 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch section {
         case .info:
+            if indexPath.row == 0 {
+                cell.firstCellLayout()
+            } else {
+                cell.normalCellLayout()
+            }
             cell.bind(section.cellTitle[indexPath.row])
-        case .setting:
+        case .settings:
+            cell.normalCellLayout()
             cell.bind(section.cellTitle[indexPath.row])
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            return 65
+        } else {
+            return 45
+        }
     }
 }
 
