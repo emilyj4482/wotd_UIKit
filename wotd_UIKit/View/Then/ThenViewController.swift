@@ -20,7 +20,7 @@ class ThenViewController: UIViewController {
     private lazy var weatherListView = WeatherListView()
     
     private lazy var addButton: UIButton = {
-        let button: UIButton = UIButton()
+        let button = UIButton()
         
         let action = UIAction { [weak self] _ in
             self?.presentAddWeatherViewController()
@@ -83,6 +83,18 @@ class ThenViewController: UIViewController {
 extension ThenViewController: ThenViewDelegate {
     func pushComparisionViewController(with weather: ThenWeather) {
         navigationController?.pushViewController(ComparisionViewController(weather: weather), animated: true)
+    }
+    
+    func showActionSheet(_ weather: ThenWeather, index: Int) {
+        let alert = UIAlertController(title: "", message: "Delete this weather?", preferredStyle: .actionSheet)
+        let deleteButton = UIAlertAction(title: "Delete", style: .default) { [unowned self] _ in
+            vm.deleteWeather(index)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        self.present(alert, animated: true)
     }
 }
 

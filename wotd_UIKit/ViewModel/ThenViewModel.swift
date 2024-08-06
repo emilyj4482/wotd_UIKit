@@ -11,6 +11,7 @@ import SwiftUI
 
 protocol ThenViewDelegate {
     func pushComparisionViewController(with weather: ThenWeather)
+    func showActionSheet(_ weather: ThenWeather, index: Int)
 }
 
 final class ThenViewModel: ObservableObject {
@@ -50,6 +51,11 @@ final class ThenViewModel: ObservableObject {
                 self?.todaysWeather = thenWeather
             }
             .store(in: &subscriptions)
+    }
+    
+    func deleteWeather(_ index: Int) {
+        weathers.remove(at: index)
+        NotificationCenter.default.post(name: Notification.tableViewReload, object: nil)
     }
 }
 

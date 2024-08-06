@@ -33,7 +33,7 @@ final class WeatherRect: UIView {
     private var dayLabel = UILabel()
     
     private var tempLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "-"
         
@@ -41,7 +41,7 @@ final class WeatherRect: UIView {
     }()
     
     private var maxminLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "max - min -"
         
@@ -49,7 +49,7 @@ final class WeatherRect: UIView {
     }()
     
     private var weatherIcon: UIImageView = {
-        let imageView: UIImageView = UIImageView()
+        let imageView = UIImageView()
         
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .accent

@@ -18,7 +18,7 @@ final class WeatherListView: UIView {
     private var subscriptions = Set<AnyCancellable>()
     
     private var titleLabel: UILabel = {
-        let label: UILabel = UILabel()
+        let label = UILabel()
         
         label.text = "Weathers to compare"
         label.font = .boldSystemFont(ofSize: 32)
@@ -28,7 +28,7 @@ final class WeatherListView: UIView {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView: UITableView = UITableView()
+        let tableView = UITableView()
         
         tableView.backgroundColor = .descent
         tableView.register(WeatherCell.self, forCellReuseIdentifier: WeatherCell.identifier)
@@ -104,7 +104,22 @@ extension WeatherListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let weather = vm.weathers[indexPath.row]
         pushComparisionViewController(with: weather)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "") { [unowned self] _, _, completion in
+            let weather = vm.weathers[indexPath.row]
+            // action sheet 호출
+            delegate?.showActionSheet(weather, index: indexPath.row)
+            completion(true)
+        }
         
+        delete.image = UIImage(systemName: "trash")?.withTintColor(.descent, renderingMode: .alwaysOriginal)
+        delete.backgroundColor = .accent
+        
+        let swipe = UISwipeActionsConfiguration(actions: [delete])
+        
+        return swipe
     }
 }
 
