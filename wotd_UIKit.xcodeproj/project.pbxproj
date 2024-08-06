@@ -48,6 +48,7 @@
 		A1BCA3A42C5B2DBE004857EC /* AddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BCA3A32C5B2DBE004857EC /* AddViewModel.swift */; };
 		A1BCA3A62C5B422E004857EC /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BCA3A52C5B422E004857EC /* SearchManager.swift */; };
 		A1BCA3A82C5B4297004857EC /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BCA3A72C5B4297004857EC /* City.swift */; };
+		A1C133372C61C21700F03B37 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C133362C61C21700F03B37 /* SettingViewModel.swift */; };
 		A1C9E2852C6124F900F6DB03 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9E2842C6124F900F6DB03 /* WebViewController.swift */; };
 		A1C9E2892C612FBB00F6DB03 /* AppInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9E2882C612FBB00F6DB03 /* AppInfoCell.swift */; };
 		A1C9E28B2C6130E800F6DB03 /* AppInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9E28A2C6130E800F6DB03 /* AppInfoSection.swift */; };
@@ -98,6 +99,7 @@
 		A1BCA3A32C5B2DBE004857EC /* AddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewModel.swift; sourceTree = "<group>"; };
 		A1BCA3A52C5B422E004857EC /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
 		A1BCA3A72C5B4297004857EC /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		A1C133362C61C21700F03B37 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		A1C9E2842C6124F900F6DB03 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A1C9E2882C612FBB00F6DB03 /* AppInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoCell.swift; sourceTree = "<group>"; };
 		A1C9E28A2C6130E800F6DB03 /* AppInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoSection.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				A115DACC2C4BE63400764929 /* NowViewModel.swift */,
 				A12BBF682C58979C00A5626A /* ThenViewModel.swift */,
 				A1BCA3A32C5B2DBE004857EC /* AddViewModel.swift */,
+				A1C133362C61C21700F03B37 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				A14933192C5FAB1800982654 /* SettingSection.swift in Sources */,
 				A1328E222C60BF61000E8C9B /* AppInfoViewController.swift in Sources */,
 				A1C9E2892C612FBB00F6DB03 /* AppInfoCell.swift in Sources */,
+				A1C133372C61C21700F03B37 /* SettingViewModel.swift in Sources */,
 				A12BBF6D2C58ADED00A5626A /* WeatherListView.swift in Sources */,
 				A18EE8122C4E983B00652206 /* Request.swift in Sources */,
 				A18627802C5E4F3C00FF07A6 /* +Int.swift in Sources */,

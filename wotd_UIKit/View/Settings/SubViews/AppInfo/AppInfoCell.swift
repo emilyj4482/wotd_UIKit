@@ -11,6 +11,8 @@ import SnapKit
 class AppInfoCell: UITableViewCell {
     static let identifier: String = "AppInfoCell"
     
+    var delegate: SettingDelegate?
+    
     private lazy var wotdStackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -56,8 +58,7 @@ class AppInfoCell: UITableViewCell {
         let button = UIButton()
         
         let action = UIAction { [weak self] _ in
-            // TODO: present webview
-            print("tapped")
+            self?.presentWebView()
         }
         
         button.setTitleColor(.accent, for: .normal)
@@ -78,6 +79,10 @@ class AppInfoCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func presentWebView() {
+        delegate?.presentWebView()
+    }
+    
     private func commonLayout() {
         backgroundColor = .moreAccent
         selectionStyle = .none
@@ -96,17 +101,19 @@ class AppInfoCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(20)
         }
         
         descriptionLabel.snp.makeConstraints {
             $0.bottom.leading.trailing.equalToSuperview()
+            $0.height.equalTo(120)
         }
         
         titleLabel.font = .boldSystemFont(ofSize: 18)
     }
     
     func devSectionLayout() {
-        addSubview(developerStackView)
+        contentView.addSubview(developerStackView)
         
         developerStackView.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()

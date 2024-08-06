@@ -50,6 +50,15 @@ class AppInfoViewController: UIViewController {
     }
 }
 
+extension AppInfoViewController: SettingDelegate {
+    func presentWebView() {
+        let root = WebViewController()
+        root.url = "https://github.com/emilyj4482"
+        let vc = UINavigationController(rootViewController: root)
+        present(vc, animated: true)
+    }
+}
+
 extension AppInfoViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         AppInfoSection.allCases.count
@@ -99,6 +108,8 @@ extension AppInfoViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
 
+        cell.delegate = self
+        
         return cell
     }
     
