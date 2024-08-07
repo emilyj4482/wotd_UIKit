@@ -54,6 +54,8 @@
 		A1C9E28B2C6130E800F6DB03 /* AppInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9E28A2C6130E800F6DB03 /* AppInfoSection.swift */; };
 		A1D6D3682C5BFCAB002FD643 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D6D3672C5BFCAB002FD643 /* SearchResultCell.swift */; };
 		A1E126862C5FD51200DA4659 /* CommonHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E126852C5FD51200DA4659 /* CommonHeader.swift */; };
+		A1F300D02C633E7600493778 /* ModeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F300CF2C633E7600493778 /* ModeButtonView.swift */; };
+		A1F300D32C635BCE00493778 /* AppearanceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F300D22C635BCE00493778 /* AppearanceType.swift */; };
 		A1F4E25C2C58F8D000832B53 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F4E25B2C58F8D000832B53 /* WeatherCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +107,8 @@
 		A1C9E28A2C6130E800F6DB03 /* AppInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoSection.swift; sourceTree = "<group>"; };
 		A1D6D3672C5BFCAB002FD643 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		A1E126852C5FD51200DA4659 /* CommonHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHeader.swift; sourceTree = "<group>"; };
+		A1F300CF2C633E7600493778 /* ModeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeButtonView.swift; sourceTree = "<group>"; };
+		A1F300D22C635BCE00493778 /* AppearanceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceType.swift; sourceTree = "<group>"; };
 		A1F4E25B2C58F8D000832B53 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,7 +223,7 @@
 			children = (
 				A1C9E2862C612BA300F6DB03 /* DataSource */,
 				A1C9E2872C612BAB00F6DB03 /* AppInfo */,
-				A1328E232C60BF6C000E8C9B /* AppearanceViewController.swift */,
+				A1F300D12C633E7D00493778 /* Appearance */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -319,6 +323,16 @@
 			path = AppInfo;
 			sourceTree = "<group>";
 		};
+		A1F300D12C633E7D00493778 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				A1328E232C60BF6C000E8C9B /* AppearanceViewController.swift */,
+				A1F300CF2C633E7600493778 /* ModeButtonView.swift */,
+				A1F300D22C635BCE00493778 /* AppearanceType.swift */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -401,6 +415,7 @@
 				A108C1AE2C4FD87400EF0B0C /* APIService.swift in Sources */,
 				A110C73C2C4AC6A1004F57AF /* SettingViewController.swift in Sources */,
 				A1BCA3A42C5B2DBE004857EC /* AddViewModel.swift in Sources */,
+				A1F300D02C633E7600493778 /* ModeButtonView.swift in Sources */,
 				A12BBF6B2C58ADD200A5626A /* EmptyView.swift in Sources */,
 				A110C7382C4AC660004F57AF /* NowViewController.swift in Sources */,
 				A110C73A2C4AC688004F57AF /* ThenViewController.swift in Sources */,
@@ -432,6 +447,7 @@
 				A1BCA3A62C5B422E004857EC /* SearchManager.swift in Sources */,
 				A14838072C501C7700C957C5 /* WeatherInfo.swift in Sources */,
 				A1534B212C593DFC000BF8F3 /* ComparisionViewController.swift in Sources */,
+				A1F300D32C635BCE00493778 /* AppearanceType.swift in Sources */,
 				A1328E242C60BF6C000E8C9B /* AppearanceViewController.swift in Sources */,
 				A168A3B42C4C443900B818E7 /* NowWeather.swift in Sources */,
 				A10692642C580D3900969E35 /* LocationManager.swift in Sources */,

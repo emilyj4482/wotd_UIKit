@@ -11,5 +11,5 @@ struct AppStorageKey {
     static let colorScheme: String = "colorScheme"
     static let weathers: String = "weathers"
     
-    // static let defaultColorScheme: Int = UserDefaults.standard.integer(forKey: colorScheme)
+    static let defaultColorScheme: Int = UserDefaults.standard.integer(forKey: colorScheme)
 }

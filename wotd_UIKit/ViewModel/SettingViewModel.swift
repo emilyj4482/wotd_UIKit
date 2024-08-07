@@ -5,7 +5,7 @@
 //  Created by EMILY on 06/08/2024.
 //
 
-import Foundation
+import SwiftUI
 
 protocol SettingDelegate {
     func presentWebView()
@@ -13,4 +13,18 @@ protocol SettingDelegate {
 
 final class SettingViewModel {
     
+    static let shared = SettingViewModel()
+    
+    @Published var appearance: AppearanceType = .system
+    
+    @AppStorage(AppStorageKey.colorScheme) var colorSchemeValue: Int = AppStorageKey.defaultColorScheme
+    
+    init() {
+        self.appearance = AppearanceType(rawValue: colorSchemeValue) ?? .system
+    }
+    
+    func changeAppearance(_ willBeAppearance: AppearanceType) {
+        appearance = willBeAppearance
+        colorSchemeValue = willBeAppearance.rawValue
+    }
 }
