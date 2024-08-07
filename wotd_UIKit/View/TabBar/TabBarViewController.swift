@@ -28,7 +28,7 @@ final class TabBarViewController: UITabBarController {
         
         self.viewControllers = tabBarViewControllers
         
-        bind()
+        //bind()
     }
     
     private func bind() {

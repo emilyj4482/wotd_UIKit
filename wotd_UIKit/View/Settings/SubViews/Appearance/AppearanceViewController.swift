@@ -32,11 +32,6 @@ class AppearanceViewController: UIViewController {
     private func layout() {
         view.backgroundColor = .descent
         
-        //view.overrideUserInterfaceStyle = .dark
-        view.overrideUserInterfaceStyle = .light
-        
-        
-        
         let offset: CGFloat = 30
         
         systemButton.snp.makeConstraints {
