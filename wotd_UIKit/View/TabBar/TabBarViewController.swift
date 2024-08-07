@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Combine
 
 final class TabBarViewController: UITabBarController {
+    
     private var locationManager = LocationManager()
+    
+    private var vm = SettingViewModel.shared
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +27,16 @@ final class TabBarViewController: UITabBarController {
             }
         
         self.viewControllers = tabBarViewControllers
+        
+        bind()
+    }
+    
+    private func bind() {
+        vm.$appearance
+            .sink {
+                self.view.overrideUserInterfaceStyle = $0.colorScheme
+            }
+            .store(in: &subscriptions)
     }
 }
 

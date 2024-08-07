@@ -10,6 +10,8 @@ import SnapKit
 
 final class ModeButtonView: UIView {
     
+    private let vm = SettingViewModel.shared
+    
     private lazy var labelStackView: UIStackView = {
         let stackView = UIStackView()
         
@@ -85,7 +87,12 @@ final class ModeButtonView: UIView {
     func bind(_ type: AppearanceType) {
         iconLabel.text = type.icon
         modeLabel.text = "\(type.modeName) Mode"
-        button.addAction(type.action, for: .touchUpInside)
+        
+        let action = UIAction { [weak self] _ in
+            self?.vm.changeAppearance(type)
+        }
+        
+        button.addAction(action, for: .touchUpInside)
     }
 }
 

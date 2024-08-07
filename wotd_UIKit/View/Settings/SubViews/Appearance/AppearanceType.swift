@@ -27,12 +27,12 @@ enum AppearanceType: Int, CaseIterable {
         case .dark: "🌚"
         }
     }
-    
-    var action: UIAction {
+
+    var colorScheme: UIUserInterfaceStyle {
         switch self {
-        case .system: UIAction { _ in print(modeName) }
-        case .light: UIAction { _ in print(modeName) }
-        case .dark: UIAction { _ in print(modeName) }
+        case .system: .unspecified
+        case .light: .light
+        case .dark: .dark
         }
     }
 }
