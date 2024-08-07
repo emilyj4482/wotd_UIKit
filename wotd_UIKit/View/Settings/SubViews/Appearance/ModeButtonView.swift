@@ -20,7 +20,7 @@ final class ModeButtonView: UIView {
         return stackView
     }()
     
-    private lazy var emojiLabel: UILabel = {
+    private lazy var iconLabel: UILabel = {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 40)
@@ -36,18 +36,7 @@ final class ModeButtonView: UIView {
         return label
     }()
     
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        
-        let action = UIAction { _ in
-            print("tapped")
-        }
-        
-        button.addAction(action, for: .touchUpInside)
-        
-        
-        return button
-    }()
+    private lazy var button = UIButton()
     
     init() {
         super.init(frame: .zero)
@@ -62,7 +51,7 @@ final class ModeButtonView: UIView {
     private func addSubviews() {
         
         [labelStackView, button].forEach { addSubview($0) }
-        [emojiLabel, modeLabel].forEach { labelStackView.addArrangedSubview($0)}
+        [iconLabel, modeLabel].forEach { labelStackView.addArrangedSubview($0)}
     }
     
     private func layout() {
@@ -79,7 +68,7 @@ final class ModeButtonView: UIView {
             $0.leading.trailing.equalToSuperview()
         }
         
-        emojiLabel.snp.makeConstraints {
+        iconLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
         }
         
@@ -93,9 +82,10 @@ final class ModeButtonView: UIView {
         
     }
     
-    func bind(emoji: String, mode: String) {
-        emojiLabel.text = emoji
-        modeLabel.text = "\(mode) Mode"
+    func bind(_ type: AppearanceType) {
+        iconLabel.text = type.icon
+        modeLabel.text = "\(type.modeName) Mode"
+        button.addAction(type.action, for: .touchUpInside)
     }
 }
 

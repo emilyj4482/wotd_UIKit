@@ -10,7 +10,11 @@ import SnapKit
 
 class AppearanceViewController: UIViewController {
     
-    private lazy var testButton = ModeButtonView()
+    private lazy var systemButton = ModeButtonView()
+    
+    private lazy var lightButton = ModeButtonView()
+    
+    private lazy var darkButton = ModeButtonView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,20 +24,34 @@ class AppearanceViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(testButton)
+        [systemButton, lightButton, darkButton].forEach { view.addSubview($0) }
     }
     
     private func layout() {
         view.backgroundColor = .descent
         
-        testButton.snp.makeConstraints {
+        let offset: CGFloat = 30
+        
+        systemButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(lightButton.snp.top).offset(-offset)
+        }
+        
+        lightButton.snp.makeConstraints {
             $0.centerX.centerY.equalToSuperview()
             
+        }
+        
+        darkButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(lightButton.snp.bottom).offset(offset)
         }
     }
     
     private func bind() {
-        testButton.bind(emoji: "🌗", mode: "System")
+        systemButton.bind(AppearanceType.system)
+        lightButton.bind(AppearanceType.light)
+        darkButton.bind(AppearanceType.dark)
     }
 }
 
