@@ -7,10 +7,13 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class ModeButtonView: UIView {
     
     private let vm = SettingViewModel.shared
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     private lazy var labelStackView: UIStackView = {
         let stackView = UIStackView()
@@ -51,7 +54,6 @@ final class ModeButtonView: UIView {
     }
     
     private func addSubviews() {
-        
         [labelStackView, button].forEach { addSubview($0) }
         [iconLabel, modeLabel].forEach { labelStackView.addArrangedSubview($0)}
     }
@@ -90,9 +92,20 @@ final class ModeButtonView: UIView {
         
         let action = UIAction { [weak self] _ in
             self?.vm.changeAppearance(type)
+            self?.window?.overrideUserInterfaceStyle = type.colorScheme
         }
-        
         button.addAction(action, for: .touchUpInside)
+
+        vm.$appearance
+            .map { return $0.rawValue == type.rawValue }
+            .sink {
+                if $0 {
+                    self.backgroundColor = .mostAccent
+                } else {
+                    self.backgroundColor = .moreAccent
+                }
+            }
+            .store(in: &subscriptions)
     }
 }
 

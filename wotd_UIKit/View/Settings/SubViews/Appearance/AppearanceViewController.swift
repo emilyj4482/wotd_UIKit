@@ -10,8 +10,6 @@ import SnapKit
 
 class AppearanceViewController: UIViewController {
    
-    
-    
     private lazy var systemButton = ModeButtonView()
     
     private lazy var lightButton = ModeButtonView()

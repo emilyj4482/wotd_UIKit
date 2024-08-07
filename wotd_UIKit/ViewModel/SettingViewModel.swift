@@ -13,13 +13,13 @@ protocol SettingDelegate {
 
 final class SettingViewModel {
     
-    static let shared = SettingViewModel(.init())
+    static let shared = SettingViewModel()
     
-    @Published var appearance: AppearanceType
+    @Published var appearance: AppearanceType = .system
     
     @AppStorage(AppStorageKey.colorScheme) var colorSchemeValue: Int = AppStorageKey.defaultColorScheme
     
-    init(_ colorSchemeValue: Int) {
+    init() {
         self.appearance = AppearanceType(rawValue: colorSchemeValue) ?? .system
     }
     

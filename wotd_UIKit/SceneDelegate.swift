@@ -15,10 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @AppStorage(AppStorageKey.colorScheme) var colorSchemeValue: Int = AppStorageKey.defaultColorScheme
     
-    private var vm = SettingViewModel.shared
-    
-    private var subscriptions = Set<AnyCancellable>()
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -28,16 +24,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         window?.overrideUserInterfaceStyle = UIUserInterfaceStyle.init(rawValue: colorSchemeValue) ?? .unspecified
-        
-        bind()
     }
-    
-    private func bind() {
-        vm.$appearance
-            .sink {
-                self.window?.overrideUserInterfaceStyle = $0.colorScheme
-            }
-            .store(in: &subscriptions)
-    }
-
 }
