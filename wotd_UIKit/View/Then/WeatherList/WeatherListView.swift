@@ -37,12 +37,12 @@ final class WeatherListView: UIView {
     }()
     
     init() {
-        super.init(frame: CGRect())
+        super.init(frame: .zero)
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        addSubview()
+        addSubviews()
         layout()
         bind()
     }
@@ -51,7 +51,7 @@ final class WeatherListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addSubview() {
+    private func addSubviews() {
         [titleLabel, tableView].forEach { addSubview($0) }
     }
     
