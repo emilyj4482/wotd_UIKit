@@ -12,6 +12,7 @@ import Combine
 final class ComparisionViewController: UIViewController {
     
     private let vm = ThenViewModel.shared
+    
     private var subscriptions = Set<AnyCancellable>()
     
     let weather: ThenWeather
@@ -49,6 +50,8 @@ final class ComparisionViewController: UIViewController {
         return label
     }()
     
+    private lazy var tempBar = TemperatureBar()
+    
     init(weather: ThenWeather) {
         self.weather = weather
         super.init(nibName: nil, bundle: nil)
@@ -66,6 +69,8 @@ final class ComparisionViewController: UIViewController {
         layout()
         setThenWeatherInfo()
         bindTodaysWeather()
+        
+        // print(view.frame.width)
     }
     
     private func addSubviews() {
@@ -73,6 +78,7 @@ final class ComparisionViewController: UIViewController {
         
         [dateLabel, tempLabel, cityLabel, maxTempLabel].forEach { $0.textColor = .accent }
         
+        view.addSubview(tempBar)
     }
     
     private func layout() {
@@ -94,6 +100,11 @@ final class ComparisionViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(cityLabel.snp.bottom).offset(20)
         }
+        
+        tempBar.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(dateLabel.snp.top).offset(-20)
+        }
     }
     
     func setThenWeatherInfo() {
@@ -113,5 +124,5 @@ final class ComparisionViewController: UIViewController {
 }
 
 #Preview {
-    ComparisionViewController(weather: ThenViewModel.shared.weathers[0])
+    ComparisionViewController(weather: ThenWeather(date: Date(), city: "London", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0))
 }

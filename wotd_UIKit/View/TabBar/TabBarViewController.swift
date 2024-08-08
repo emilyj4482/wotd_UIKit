@@ -22,6 +22,12 @@ final class TabBarViewController: UITabBarController {
             }
         
         self.viewControllers = tabBarViewControllers
+        
+        setCGFloat()
+    }
+    
+    func setCGFloat() {
+        SettingViewModel.shared.temperatureBarWidth = view.frame.width - 40
     }
 }
 
