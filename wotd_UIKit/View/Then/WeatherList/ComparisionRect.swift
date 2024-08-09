@@ -7,73 +7,60 @@
 
 import UIKit
 import SnapKit
-// import Combine
 
 final class ComparisionRect: UIView {
     
-    // private let vm = SettingViewModel.shared
-    
-    // private var subscriptions = Set<AnyCancellable>()
-    
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .preferredFont(forTextStyle: .title1)
-        
-        return label
-    }()
-    
-    private lazy var cityLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .preferredFont(forTextStyle: .title2)
-        
-        return label
-    }()
-    
-    private lazy var momentStackView: UIStackView = {
+    private lazy var titleStackView: UIStackView = {
         let stackView = UIStackView()
         
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.addArrangedSubview(dateLabel)
+        stackView.addArrangedSubview(cityLabel)
         
         return stackView
     }()
     
-    private lazy var timeLabel: UILabel = {
-        let label = UILabel()
-        
-        return label
-    }()
+    private lazy var dateLabel = UILabel()
+    private lazy var cityLabel = UILabel()
     
-    private lazy var tempLabel: UILabel = {
-        let label = UILabel()
+    private func momentStackView(_ time: String, temp: String) -> UIStackView {
+        let stackView = UIStackView()
         
-        return label
-    }()
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        
+        let timeLabel = UILabel()
+        
+        timeLabel.text = time
+        timeLabel.textColor = .accent
+        timeLabel.font = .monospacedSystemFont(ofSize: 16, weight: .medium)
+        timeLabel.textAlignment = .left
+        
+        let tempLabel = UILabel()
+        
+        tempLabel.text = temp
+        tempLabel.textColor = .accent
+        tempLabel.font = .monospacedSystemFont(ofSize: 16, weight: .medium)
+        tempLabel.textAlignment = .right
+        
+        stackView.addArrangedSubview(timeLabel)
+        stackView.addArrangedSubview(tempLabel)
+        
+        return stackView
+    }
     
     private lazy var dayStackView: UIStackView = {
         let stackView = UIStackView()
         
         stackView.axis = .vertical
+        stackView.spacing = 10
         
         return stackView
     }()
     
-    private lazy var minLabel: UILabel = {
-        let label = UILabel()
-        
-        label.textAlignment = .left
-        
-        return label
-    }()
-    
-    private lazy var maxLabel: UILabel = {
-        let label = UILabel()
-        
-        label.textAlignment = .right
-        
-        return label
-    }()
+    private lazy var minLabel = UILabel()
+    private lazy var maxLabel = UILabel()
     
     private lazy var temperatureBar = TemperatureBar()
     
@@ -81,8 +68,7 @@ final class ComparisionRect: UIView {
         super.init(frame: .zero)
         
         addSubviews()
-        figure()
-        layout()
+        commonLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -90,65 +76,102 @@ final class ComparisionRect: UIView {
     }
     
     private func addSubviews() {
-        [dateLabel, cityLabel, dayStackView, minLabel, maxLabel, temperatureBar].forEach { addSubview($0) }
-        // [timeLabel, tempLabel].forEach { momentStackView.addArrangedSubview($0) }
+        [titleStackView, dayStackView, minLabel, maxLabel, temperatureBar].forEach { addSubview($0) }
     }
     
-    private func figure() {
+    private func commonLayout() {
         backgroundColor = .moreAccent
         layer.cornerRadius = 15
-        
-        
-        [dateLabel, cityLabel, minLabel, maxLabel, timeLabel, tempLabel].forEach { $0.textColor = .accent }
-    }
-    
-    private func layout() {
-        
-        let offset: CGFloat = 20
         
         snp.makeConstraints {
             $0.height.equalTo(260)
         }
         
-        dateLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(offset)
-            $0.centerY.equalToSuperview().offset(-offset)
+        titleStackView.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(30)
         }
         
-        cityLabel.snp.makeConstraints {
-            $0.leading.equalTo(dateLabel.snp.leading)
-            $0.top.equalTo(dateLabel.snp.bottom).offset(5)
+        dayStackView.snp.makeConstraints {
+            $0.trailing.equalToSuperview().offset(-30)
         }
-        /*
-        momentStackView.snp.makeConstraints {
-            $0.leading.equalTo(dateLabel.snp.trailing).offset(50)
-        }
-         */
         
         minLabel.snp.makeConstraints {
             $0.width.equalTo(30)
-            $0.leading.equalToSuperview().offset(22)
-            $0.bottom.equalToSuperview().offset(-offset)
+            $0.leading.equalToSuperview().offset(20)
         }
         
         maxLabel.snp.makeConstraints {
             $0.width.equalTo(30)
-            $0.trailing.equalToSuperview().offset(-22)
-            $0.bottom.equalTo(minLabel.snp.bottom)
+            $0.trailing.equalToSuperview().offset(-20)
         }
         
         temperatureBar.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(minLabel.snp.centerY)
         }
+        
+        [dateLabel, cityLabel, minLabel, maxLabel].forEach { $0.textColor = .accent }
+        [minLabel, maxLabel].forEach { $0.textAlignment = .center }
+        dateLabel.font = .boldSystemFont(ofSize: 28)
+        cityLabel.font = .preferredFont(forTextStyle: .title2)
     }
     
-    func bind(_ weather: ThenWeather) {
-        dateLabel.text = weather.date.dateString
-        cityLabel.text = weather.city
-        timeLabel.text = "9AM"
-        tempLabel.text = weather.morning.toString
-        minLabel.text = weather.min.toString
-        maxLabel.text = weather.max.toString
+    func thenLayout() {
+        titleStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview().offset(-10)
+        }
+        
+        dayStackView.snp.makeConstraints {
+            $0.centerY.equalTo(dateLabel.snp.centerY)
+        }
+
+        minLabel.snp.makeConstraints {
+            $0.bottom.equalToSuperview().offset(-35)
+        }
+        
+        maxLabel.snp.makeConstraints {
+            $0.bottom.equalTo(minLabel.snp.bottom)
+        }
     }
+    
+    func nowLayout() {
+        titleStackView.snp.makeConstraints {
+            $0.centerY.equalToSuperview().offset(10)
+        }
+        
+        dayStackView.snp.makeConstraints {
+            $0.centerY.equalTo(cityLabel.snp.centerY)
+        }
+        
+        minLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(35)
+        }
+        
+        maxLabel.snp.makeConstraints {
+            $0.top.equalTo(minLabel.snp.top)
+        }
+    }
+    
+    func bind(_ weather: ThenWeather?, isToday: Bool) {
+        if isToday {
+            dateLabel.text = "Now"
+        } else {
+            dateLabel.text = weather?.date.dateString ?? "-"
+        }
+        
+        cityLabel.text = weather?.city ?? "-"
+        minLabel.text = weather?.min.toString ?? "-"
+        maxLabel.text = weather?.max.toString ?? "-"
+        
+        let morningStackView = momentStackView("9AM", temp: weather?.morning.toString ?? "-")
+        let afternoonStackView = momentStackView("12PM", temp: weather?.afternoon.toString ?? "-")
+        let eveningStackView = momentStackView("6PM", temp: weather?.evening.toString ?? "-")
+        let nightStackView = momentStackView("12AM", temp: weather?.night.toString ?? "-")
+     
+        [morningStackView, afternoonStackView, eveningStackView, nightStackView].forEach { dayStackView.addArrangedSubview($0) }
+    }
+}
+
+#Preview {
+    ComparisionViewController(weather: ThenWeather(date: Date(), city: "Suwon-si", min: 3, max: 48, morning: 19, afternoon: 30, evening: 26, night: -3))
 }

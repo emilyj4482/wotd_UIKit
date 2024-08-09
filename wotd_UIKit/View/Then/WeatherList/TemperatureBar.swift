@@ -32,7 +32,7 @@ final class TemperatureBar: UIView {
             .sink { [weak self] width in
                 print(width)
                 self?.snp.makeConstraints {
-                    // 화면 width - (rect과의 간격 20 - 온도 label과의 간격 22 - 온도 label width 30 - 온도 label과 bar의 거리 8) * 2
+                    // 화면 width - (rect과의 간격 20 - 온도 label과의 간격 20 - 온도 label width 30 - 온도 label과 bar의 거리 10) * 2
                     $0.width.equalTo(width - 160)
                     $0.height.equalTo(8)
                 }

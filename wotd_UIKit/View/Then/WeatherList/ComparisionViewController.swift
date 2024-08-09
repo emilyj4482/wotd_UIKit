@@ -19,6 +19,8 @@ final class ComparisionViewController: UIViewController {
     
     private lazy var thenRect = ComparisionRect()
     
+    private lazy var nowRect = ComparisionRect()
+    
     init(weather: ThenWeather) {
         self.weather = weather
         super.init(nibName: nil, bundle: nil)
@@ -35,13 +37,11 @@ final class ComparisionViewController: UIViewController {
         addSubviews()
         layout()
         setThenWeatherInfo()
-        // bindTodaysWeather()
-        
-        // print(view.frame.width)
+        bindTodaysWeather()
     }
     
     private func addSubviews() {
-        view.addSubview(thenRect)
+        [thenRect, nowRect].forEach { view.addSubview($0) }
     }
     
     private func layout() {
@@ -51,25 +51,31 @@ final class ComparisionViewController: UIViewController {
         thenRect.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(offset)
             $0.trailing.equalToSuperview().offset(-offset)
-            $0.centerY.equalToSuperview()
+            $0.bottom.equalTo(view.snp.centerY).offset(-10)
+        }
+        
+        nowRect.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.top.equalTo(view.snp.centerY).offset(10)
         }
     }
     
     func setThenWeatherInfo() {
-        thenRect.bind(weather)
+        thenRect.bind(weather, isToday: false)
+        thenRect.thenLayout()
     }
     
-    /*
     func bindTodaysWeather() {
         vm.$todaysWeather
             .receive(on: DispatchQueue.main)
             .sink { [weak self] weather in
-                self?.cityLabel.text = weather?.city ?? "-"
-                self?.maxTempLabel.text = weather?.max.toString ?? "-"
+                self?.nowRect.bind(weather, isToday: true)
             }
             .store(in: &subscriptions)
+        
+        nowRect.nowLayout()
     }
-     */
 }
 
 #Preview {
