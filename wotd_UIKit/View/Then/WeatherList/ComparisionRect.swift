@@ -7,9 +7,13 @@
 
 import UIKit
 import SnapKit
-import Combine
+// import Combine
 
 final class ComparisionRect: UIView {
+    
+    // private let vm = SettingViewModel.shared
+    
+    // private var subscriptions = Set<AnyCancellable>()
     
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
@@ -58,20 +62,23 @@ final class ComparisionRect: UIView {
     private lazy var minLabel: UILabel = {
         let label = UILabel()
         
+        label.textAlignment = .left
+        
         return label
     }()
     
     private lazy var maxLabel: UILabel = {
         let label = UILabel()
         
+        label.textAlignment = .right
+        
         return label
     }()
     
-    private lazy var temperatureBar  = TemperatureBar()
+    private lazy var temperatureBar = TemperatureBar()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-        
         
         addSubviews()
         figure()
@@ -83,7 +90,7 @@ final class ComparisionRect: UIView {
     }
     
     private func addSubviews() {
-        [dateLabel, cityLabel, dayStackView, minLabel, maxLabel].forEach { addSubview($0) }
+        [dateLabel, cityLabel, dayStackView, minLabel, maxLabel, temperatureBar].forEach { addSubview($0) }
         // [timeLabel, tempLabel].forEach { momentStackView.addArrangedSubview($0) }
     }
     
@@ -119,20 +126,21 @@ final class ComparisionRect: UIView {
          */
         
         minLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(offset)
+            $0.width.equalTo(30)
+            $0.leading.equalToSuperview().offset(22)
             $0.bottom.equalToSuperview().offset(-offset)
         }
         
         maxLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().offset(-offset)
+            $0.width.equalTo(30)
+            $0.trailing.equalToSuperview().offset(-22)
             $0.bottom.equalTo(minLabel.snp.bottom)
         }
         
-        /*
         temperatureBar.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
             $0.centerY.equalTo(minLabel.snp.centerY)
         }
-         */
     }
     
     func bind(_ weather: ThenWeather) {

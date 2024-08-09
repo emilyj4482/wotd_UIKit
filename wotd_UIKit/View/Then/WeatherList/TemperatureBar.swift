@@ -25,18 +25,19 @@ final class TemperatureBar: UIView {
     }
     
     private func layout() {
-        vm.$temperatureBarWidth
+        backgroundColor = .accent
+        layer.cornerRadius = 4
+        
+        vm.$frameWidth
             .sink { [weak self] width in
+                print(width)
                 self?.snp.makeConstraints {
-                    $0.width.equalTo(width)
-                    $0.height.equalTo(10)
+                    // 화면 width - (rect과의 간격 20 - 온도 label과의 간격 22 - 온도 label width 30 - 온도 label과 bar의 거리 8) * 2
+                    $0.width.equalTo(width - 160)
+                    $0.height.equalTo(8)
                 }
-                print("width: \(width)")
                 return
             }
             .store(in: &subscriptions)
-        
-        backgroundColor = .accent
-        layer.cornerRadius = 5
     }
 }
