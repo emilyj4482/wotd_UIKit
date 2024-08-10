@@ -27,7 +27,7 @@ final class TemperatureBar: UIView {
     }
     
     private func layout() {
-        backgroundColor = .lightGray
+        backgroundColor = .tempBar
         layer.cornerRadius = 4
         
         vm.$frameWidth
@@ -57,10 +57,14 @@ final class TemperatureBar: UIView {
         gradientLayer.cornerRadius = bar.layer.cornerRadius
         bar.layer.insertSublayer(gradientLayer, at: 0)
         
+        bar.layer.shadowColor = UIColor.gray.cgColor
+        bar.layer.shadowOpacity = 0.5
+        bar.layer.shadowRadius = 10.0
+        
         return bar
     }
     
-    private lazy var testBar = comparisionBar(174, [UIColor.green.cgColor, UIColor.cyan.cgColor])
+    private lazy var testBar = comparisionBar(174, [UIColor.below10.cgColor, UIColor.below0.cgColor])
     
     private func addSubviews() {
         addSubview(testBar)
