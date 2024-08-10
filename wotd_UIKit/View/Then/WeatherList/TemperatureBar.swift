@@ -18,6 +18,7 @@ final class TemperatureBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         layout()
+        makeBar()
     }
     
     required init?(coder: NSCoder) {
@@ -25,7 +26,7 @@ final class TemperatureBar: UIView {
     }
     
     private func layout() {
-        backgroundColor = .accent
+        backgroundColor = .lightGray
         layer.cornerRadius = 4
         
         vm.$frameWidth
@@ -40,4 +41,32 @@ final class TemperatureBar: UIView {
             }
             .store(in: &subscriptions)
     }
+    
+    func makeBar() {
+        let bar = UIView()
+        
+        bar.frame.size = CGSize(width: (vm.frameWidth) / 2, height: 8)
+        bar.layer.cornerRadius = 4
+        
+        let gradientLayer = CAGradientLayer(layer: bar)
+        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.cyan.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+        gradientLayer.frame = bar.bounds
+        gradientLayer.cornerRadius = bar.layer.cornerRadius
+        bar.layer.insertSublayer(gradientLayer, at: 0)
+        
+        addSubview(bar)
+        /*
+        bar.snp.makeConstraints {
+            $0.centerY.centerX.equalToSuperview()
+        }
+         */
+    }
+    
+    func layout2() {
+        
+    }
+    
+    
 }
