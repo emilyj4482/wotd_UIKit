@@ -22,6 +22,13 @@ final class TabBarViewController: UITabBarController {
             }
         
         self.viewControllers = tabBarViewControllers
+        
+        setCGFloat()
+    }
+    
+    // comparision view > temperature bar의 width : 화면 width - ((rect과의 간격 20 - 온도 label과의 간격 20 - 온도 label width 30 - 온도 label과 bar의 거리 10) * 2)
+    func setCGFloat() {
+        ThenViewModel.shared.tempBarWidth = view.frame.width - 160
     }
 }
 

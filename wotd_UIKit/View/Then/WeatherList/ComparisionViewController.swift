@@ -12,42 +12,14 @@ import Combine
 final class ComparisionViewController: UIViewController {
     
     private let vm = ThenViewModel.shared
+    
     private var subscriptions = Set<AnyCancellable>()
     
     let weather: ThenWeather
     
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .preferredFont(forTextStyle: .largeTitle)
-        
-        return label
-    }()
+    private lazy var thenRect = ComparisionRect()
     
-    private lazy var tempLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .preferredFont(forTextStyle: .title1)
-        
-        return label
-    }()
-    
-    private lazy var cityLabel: UILabel = {
-        let label = UILabel()
-        
-        
-        label.font = .preferredFont(forTextStyle: .title1)
-        
-        return label
-    }()
-    
-    private lazy var maxTempLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .preferredFont(forTextStyle: .title2)
-        
-        return label
-    }()
+    private lazy var nowRect = ComparisionRect()
     
     init(weather: ThenWeather) {
         self.weather = weather
@@ -69,49 +41,69 @@ final class ComparisionViewController: UIViewController {
     }
     
     private func addSubviews() {
-        [dateLabel, tempLabel, cityLabel, maxTempLabel].forEach { view.addSubview($0) }
-        
-        [dateLabel, tempLabel, cityLabel, maxTempLabel].forEach { $0.textColor = .accent }
-        
+        [thenRect, nowRect].forEach { view.addSubview($0) }
     }
     
     private func layout() {
-        dateLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
+        
+        let offset: CGFloat = 20
+        
+        thenRect.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.bottom.equalTo(view.snp.centerY).offset(-10)
         }
         
-        tempLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(dateLabel.snp.bottom).offset(20)
-        }
-        
-        cityLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(tempLabel.snp.bottom).offset(50)
-        }
-        
-        maxTempLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(cityLabel.snp.bottom).offset(20)
+        nowRect.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.top.equalTo(view.snp.centerY).offset(10)
         }
     }
     
     func setThenWeatherInfo() {
-        dateLabel.text = weather.date.dateString
-        tempLabel.text = weather.afternoon.toString
+        thenRect.bind(weather, isToday: false)
+        thenRect.thenLayout()
     }
     
     func bindTodaysWeather() {
         vm.$todaysWeather
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] weather in
-                self?.cityLabel.text = weather?.city ?? "-"
-                self?.maxTempLabel.text = weather?.max.toString ?? "-"
+            .combineLatest(vm.$tempBarWidth)
+            .sink { [unowned self] nowWeather, width in
+                guard let nowWeather = nowWeather else { return }
+                nowRect.bind(nowWeather, isToday: true)
+                getRange(width: width, then: weather, now: nowWeather)
             }
             .store(in: &subscriptions)
+        
+        nowRect.nowLayout()
+    }
+}
+
+extension ComparisionViewController {
+    // then weather과 now weather의 일교차를 종합하여 온도 비교 bar의 offset값을 계산 후 subview에 전달해준다.
+    // 이 때 최저, 최고 기온에 따른 bar의 gradient 색상 또한 전달해준다.
+    private func getRange(width: CGFloat, then: ThenWeather, now: ThenWeather) {
+        let thenMin = CGFloat(then.min)
+        let thenMax = CGFloat(then.max)
+        let nowMin = CGFloat(now.min)
+        let nowMax = CGFloat(now.max)
+        
+        let max = max(thenMax, nowMax)
+        let min = min(thenMin, nowMin)
+        let gap = max - min
+        
+        let thenLeadingOffset = abs(min - thenMin) * width / gap
+        let thenTrailingOffset = abs(max - thenMax) * width / gap
+        let nowLeadingOffset = abs(min - nowMin) * width / gap
+        let nowTrailingOffset = abs(max - nowMax) * width / gap
+        
+        thenRect.setOffset(leading: thenLeadingOffset, trailing: thenTrailingOffset, colors: [then.min.toTempColor, then.max.toTempColor])
+        nowRect.setOffset(leading: nowLeadingOffset, trailing: nowTrailingOffset, colors: [now.min.toTempColor, now.max.toTempColor])
     }
 }
 
 #Preview {
-    ComparisionViewController(weather: ThenViewModel.shared.weathers[0])
+    ComparisionViewController(weather: ThenWeather(date: Date(), city: "London", min: 0, max: 0, morning: 0, afternoon: 0, evening: 0, night: 0))
 }
