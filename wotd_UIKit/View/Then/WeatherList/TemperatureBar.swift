@@ -11,14 +11,15 @@ import Combine
 
 final class TemperatureBar: UIView {
     
-    private let vm = SettingViewModel.shared
+    private let vm = ThenViewModel.shared
     
     private var subscriptions = Set<AnyCancellable>()
     
+    var offset = PassthroughSubject<(leading: CGFloat, trailing: CGFloat), Never>()
+
     override init(frame: CGRect) {
         super.init(frame: .zero)
         layout()
-        addSubviews()
         subViewLayout()
     }
     
@@ -30,12 +31,10 @@ final class TemperatureBar: UIView {
         backgroundColor = .tempBar
         layer.cornerRadius = 4
         
-        vm.$frameWidth
+        vm.$tempBarWidth
             .sink { [weak self] width in
-                print(width)
                 self?.snp.makeConstraints {
-                    // 화면 width - (rect과의 간격 20 - 온도 label과의 간격 20 - 온도 label width 30 - 온도 label과 bar의 거리 10) * 2
-                    $0.width.equalTo(width - 160)
+                    $0.width.equalTo(width)
                     $0.height.equalTo(8)
                 }
                 return
@@ -43,6 +42,7 @@ final class TemperatureBar: UIView {
             .store(in: &subscriptions)
     }
     
+    // 일교차를 보여주는 bar
     private func comparisionBar(_ width: CGFloat, _ colors: [CGColor]) -> UIView {
         let bar = UIView()
         
@@ -63,16 +63,20 @@ final class TemperatureBar: UIView {
         
         return bar
     }
-    
-    private lazy var testBar = comparisionBar(174, [UIColor.below10.cgColor, UIColor.below0.cgColor])
-    
-    private func addSubviews() {
-        addSubview(testBar)
-    }
-    
+
+    // 구독한 offset 정보에 따라 일교차 비교 bar의 layout을 정하고 subview로 선언해준다.
     private func subViewLayout() {
-        testBar.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(30)
-        }
+        offset
+            .sink { [unowned self] leading, trailing in
+                let width = vm.tempBarWidth - leading - trailing
+                var compBar = comparisionBar(width, [UIColor.below10.cgColor, UIColor.below0.cgColor])
+                addSubview(compBar)
+                
+                compBar.snp.makeConstraints {
+                    $0.leading.equalToSuperview().offset(leading)
+                    $0.trailing.equalToSuperview().offset(trailing)
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

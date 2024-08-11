@@ -27,11 +27,10 @@ final class ThenViewModel: ObservableObject {
         }
     }
     
-    @Published var todaysWeather: ThenWeather? {
-        didSet {
-            print(todaysWeather ?? "[todaysWeather] nil")
-        }
-    }
+    @Published var todaysWeather: ThenWeather?
+    
+    // default : iphone 15 pro width 393 - 160
+    @Published var tempBarWidth: CGFloat = 233.0
     
     init() {
         getData()

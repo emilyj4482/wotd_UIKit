@@ -170,6 +170,10 @@ final class ComparisionRect: UIView {
      
         [morningStackView, afternoonStackView, eveningStackView, nightStackView].forEach { dayStackView.addArrangedSubview($0) }
     }
+    
+    func setOffset(leading: CGFloat, trailing: CGFloat) {
+        temperatureBar.offset.send((leading: leading, trailing: trailing))
+    }
 }
 
 #Preview {

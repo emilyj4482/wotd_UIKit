@@ -69,12 +69,37 @@ final class ComparisionViewController: UIViewController {
     func bindTodaysWeather() {
         vm.$todaysWeather
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] weather in
-                self?.nowRect.bind(weather, isToday: true)
+            .combineLatest(vm.$tempBarWidth)
+            .sink { [unowned self] nowWeather, width in
+                guard let nowWeather = nowWeather else { return }
+                nowRect.bind(nowWeather, isToday: true)
+                getRange(width: width, then: weather, now: nowWeather)
             }
             .store(in: &subscriptions)
         
         nowRect.nowLayout()
+    }
+}
+
+extension ComparisionViewController {
+    // then weather과 now weather의 일교차를 종합하여 온도 비교 bar의 offset값을 계산 후 subview에 전달해준다.
+    private func getRange(width: CGFloat, then: ThenWeather, now: ThenWeather) {
+        let thenMin = CGFloat(then.min)
+        let thenMax = CGFloat(then.max)
+        let nowMin = CGFloat(now.min)
+        let nowMax = CGFloat(now.max)
+        
+        let max = max(thenMax, nowMax)
+        let min = min(thenMin, nowMin)
+        let gap = max - min
+        
+        let thenLeadingOffset = abs(min - thenMin) * width / gap
+        let thenTrailingOffset = abs(max - thenMax) * width / gap
+        let nowLeadingOffset = abs(min - nowMin) * width / gap
+        let nowTrailingOffset = abs(max - nowMax) * width / gap
+        
+        thenRect.setOffset(leading: thenLeadingOffset, trailing: thenTrailingOffset)
+        nowRect.setOffset(leading: nowLeadingOffset, trailing: nowTrailingOffset)
     }
 }
 

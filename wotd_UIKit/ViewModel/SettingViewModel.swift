@@ -19,9 +19,6 @@ final class SettingViewModel {
     
     @AppStorage(AppStorageKey.colorScheme) var colorSchemeValue: Int = AppStorageKey.defaultColorScheme
     
-    // default : iphone 15 pro width
-    @Published var frameWidth: CGFloat = 393.0
-    
     init() {
         self.appearance = AppearanceType(rawValue: colorSchemeValue) ?? .system
     }
