@@ -16,6 +16,7 @@ final class TemperatureBar: UIView {
     private var subscriptions = Set<AnyCancellable>()
     
     var offset = PassthroughSubject<(leading: CGFloat, trailing: CGFloat), Never>()
+    var colors = PassthroughSubject<[CGColor], Never>()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -64,17 +65,18 @@ final class TemperatureBar: UIView {
         return bar
     }
 
-    // 구독한 offset 정보에 따라 일교차 비교 bar의 layout을 정하고 subview로 선언해준다.
+    // 구독한 offset과 colors 정보에 따라 일교차 비교 bar의 layout을 정하고 subview로 선언해준다.
     private func subViewLayout() {
         offset
-            .sink { [unowned self] leading, trailing in
-                let width = vm.tempBarWidth - leading - trailing
-                var compBar = comparisionBar(width, [UIColor.below10.cgColor, UIColor.below0.cgColor])
+            .combineLatest(colors)
+            .sink { [unowned self] offset, colors in
+                let width = vm.tempBarWidth - offset.leading - offset.trailing
+                var compBar = comparisionBar(width, colors)
                 addSubview(compBar)
                 
                 compBar.snp.makeConstraints {
-                    $0.leading.equalToSuperview().offset(leading)
-                    $0.trailing.equalToSuperview().offset(trailing)
+                    $0.leading.equalToSuperview().offset(offset.leading)
+                    $0.trailing.equalToSuperview().offset(offset.trailing)
                 }
             }
             .store(in: &subscriptions)

@@ -83,6 +83,7 @@ final class ComparisionViewController: UIViewController {
 
 extension ComparisionViewController {
     // then weather과 now weather의 일교차를 종합하여 온도 비교 bar의 offset값을 계산 후 subview에 전달해준다.
+    // 이 때 최저, 최고 기온에 따른 bar의 gradient 색상 또한 전달해준다.
     private func getRange(width: CGFloat, then: ThenWeather, now: ThenWeather) {
         let thenMin = CGFloat(then.min)
         let thenMax = CGFloat(then.max)
@@ -98,8 +99,8 @@ extension ComparisionViewController {
         let nowLeadingOffset = abs(min - nowMin) * width / gap
         let nowTrailingOffset = abs(max - nowMax) * width / gap
         
-        thenRect.setOffset(leading: thenLeadingOffset, trailing: thenTrailingOffset)
-        nowRect.setOffset(leading: nowLeadingOffset, trailing: nowTrailingOffset)
+        thenRect.setOffset(leading: thenLeadingOffset, trailing: thenTrailingOffset, colors: [then.min.toTempColor, then.max.toTempColor])
+        nowRect.setOffset(leading: nowLeadingOffset, trailing: nowTrailingOffset, colors: [now.min.toTempColor, now.max.toTempColor])
     }
 }
 
